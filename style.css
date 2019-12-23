@@ -1,0 +1,54 @@
+/*
+Theme Name: GruposPET
+Template: kyma
+Theme URI: https://www.webhuntinfotech.com/premium-themes/kyma-advanced-premium-wordpress-theme/
+Author: Kaio Mitsuharu Lino Aida
+Author URI: https://github.com/kaiomudkt
+Description: Tema desenvolvido para o programa de educação tutorial
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: 
+Text Domain: 
+*/
+
+/*
+todos os estilos do arquivo  de estilo-filho, vai ser prioridade 
+e dos estilos css/estilo2.css tb vao ser prioridade encima do estilo pai,
+quando o tema pai for atualizado, somente as mundacas feitas no tema pai serao perdidas, 
+e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
+*/
+
+#mapa_pets_brasil{
+	background: #00a69b;
+	overflow: hidden;
+	
+}
+
+#mapa_brasil{
+	/*background-color: red;*/
+	padding: 20px;
+	float: left;
+	width: 500px;
+	margin-left: 200px;
+}
+
+#lista_pet_estado{
+	width: ;
+	text-align: center;
+	margin-top: 100px;
+	margin-right: 300px;
+	/*background-color: blue;*/
+	float: right;
+	overflow: scroll;/*configurar melhor esse scroll*/
+}
+
+#lista_pet_estado ul li{
+	color: white;
+}
+
+.light_header #navy > li > a,
+.light_header #navy > li > .slicknav_row > a {
+    color: #fff;
+
+}
