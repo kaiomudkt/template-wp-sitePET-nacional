@@ -52,3 +52,9 @@ e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
     color: #fff;
 
 }
+
+.light_header #navy > li > a,
+.light_header #navy > li > .slicknav_row > a {
+    color: #484848;
+
+}

@@ -40,7 +40,9 @@ function pet_post_type() {
 		'description'           => __( 'Tipo de post destinado somente para gerenciar grupo pet', 'text_domain' ),
 		'labels'                => $labels,
 		//'supports'              => array( 'title', 'editor' ),
-		'supports'              => array( 'title'),
+		'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
+		//'supports'              => array( 'title'), //estava usando esse
+		//'supports'              => array( 'title', 'thumbnail' ), //mas vou testar esse, para ativar a thumbnail
 		'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
