@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts' , 'carrega_estilos');
 //caminho (/var/www/html/wp-content/themes/GruposPET)
 $template_diretorio_filho = get_stylesheet_directory();
 //echo $template_diretorio_filho;
-require_once($template_diretorio_filho . "/custom-post-type/pet.php");
+require_once($template_diretorio_filho . "/custom-post-type/cria-custom-post-type-pet.php");
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
