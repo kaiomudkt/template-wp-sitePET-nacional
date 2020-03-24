@@ -48,6 +48,8 @@ function pet_post_type() {
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
+		'show_in_rest'			=> true,
+		'rest_base'          	=> 'Pets',
 		'menu_position'         => 5,
 		'show_in_rest'		 	=> true,
 		'rest_base'             => 'pets',
