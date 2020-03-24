@@ -19,8 +19,9 @@ ainda falta fazer o desinger, ou aproveitar o designer do "home-blog.php" do tem
 $arguments = array('method' => 'GET');
 //$url = 'http://demo.wp-api.org/wp-json/wp/v2/posts';
 //$url = 'http://localhost:8083/?rest_route=/wp/v2/posts';
-//$url = 'https://www.facom.ufms.br/wp-json/wp/v2/posts';
-$url = 'http://grupospet.ufms.br/?rest_route=/wp/v2/posts';
+$url = 'https://www.facom.ufms.br/wp-json/wp/v2/posts';
+//$url = 'http://grupospet.ufms.br/?rest_route=/wp/v2/posts';
+//$url = 'http://grupospet.ufms.br/wp-json/wp/v2/posts';
 
 // Faz a solicitação GET para o endereço.
 $request = wp_remote_get( $url, $arguments);

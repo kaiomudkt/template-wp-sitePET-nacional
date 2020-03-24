@@ -49,6 +49,8 @@ function pet_post_type() {
 		'show_ui'               => true,
 		'show_in_menu'          => true,
 		'menu_position'         => 5,
+		'show_in_rest'		 	=> true,
+		'rest_base'             => 'pets',
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
@@ -58,7 +60,7 @@ function pet_post_type() {
 		'capability_type'       => 'page',
 		'menu_icon'				=> 'dashicons-groups',
 	);
-	register_post_type( 'pet_post_type_key', $args );
+	register_post_type( 'pet_post_type_key', $args );//pet_post_type_key é a chave identificadora do C-P-T PET
 
 }
 add_action( 'init', 'pet_post_type', 0 );

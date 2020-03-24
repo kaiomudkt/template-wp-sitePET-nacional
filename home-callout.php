@@ -3,17 +3,17 @@
 <div id="mapa_pets_brasil">
     <div style="">
         <div id="mapa_brasil">
-        <?php
-            include('Mapa+do+Brasil+SVGa.html');
-        ?>
-    </div>
+            <?php
+                include('Mapa+do+Brasil+SVGa.html');
+            ?>
+        </div>
 
     </div>
 
     <div id="lista_pet_estado">
         <?php 
             /*listar todos os pets desse estado
-https://www.youtube.com/watch?v=Roz4nx5bcmU&t=590s
+            https://www.youtube.com/watch?v=Roz4nx5bcmU&t=590s
             */
             query_posts('post_type=pet_post_type_key');
 
@@ -24,7 +24,13 @@ https://www.youtube.com/watch?v=Roz4nx5bcmU&t=590s
             if(have_posts()): while (have_posts()): the_post();
                 ?>
                 <ul>
-                    <li><?php the_title(); ?> </li>
+                    <li>
+
+                        <a href="<?php the_permalink(); ?>">
+                            
+                            <?php the_title(); ?>
+                        </a>
+                     </li>
                 </ul>
                 <?php  
                 endwhile;
@@ -37,4 +43,37 @@ https://www.youtube.com/watch?v=Roz4nx5bcmU&t=590s
         
         
     </div>
+
+
+
+    <?php 
+        $args = get_posts(array(
+            'numberposts'	=> 2,
+            'post_type'		=> 'pet_post_type_key',
+            'meta_key'		=> 'tutor',
+            'meta_value'	=> 'renato'
+        ));
+        // query
+        $the_query = new WP_Query( $args );
+    ?>
+    <?php if( $the_query->have_posts() ): ?>
+        <ul>
+        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+            <li>
+                <a href="<?php the_permalink(); ?>">
+                    <img src="<?php the_field('event_thumbnail'); ?>" />
+                    <?php the_title(); ?>
+                </a>
+            </li>
+        <?php endwhile; ?>
+        </ul>
+    <?php endif; ?>
+
+    <?php wp_reset_query();	 // Restore global post data stomped by the_post(). ?>
+
+        
 </div>
+
+
+
+
