@@ -17,11 +17,13 @@
                 $("#loading").show(); //icon 
                 //faz requisicao
                 $.ajax({
-                    url: 'http://grupospet.ufms.br/?rest_route=/wp/v2/pet_post_type_key',
+                    /*url: 'http://grupospet.ufms.br/?rest_route=/wp/v2/pet_post_type_key',*/
+                    url: 'http://localhost:8083/?rest_route=/wp/v2/endpoints/versao1/pet_get.php',
                     type: "GET",
                     dataType: "json",
                     data: {}
                 }).done(function (response) { //depois da requisicao
+                console.log(response);
                     $("#lista_pets").html("");//limpa lista
                     response.forEach(element => { //percorre array de objetos de "post do WP"
                         $("#lista_pets").append(//insere na 'ul' na '#lista_pets'

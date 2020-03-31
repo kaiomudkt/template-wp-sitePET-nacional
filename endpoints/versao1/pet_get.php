@@ -1,6 +1,6 @@
 <?php
 
-function pet($slug) {
+function pet_scheme($slug) {
   $post_id = get_pet_id_by_slug($slug);
   if($post_id) {
     $post_meta = get_post_meta($post_id);
@@ -17,39 +17,44 @@ function pet($slug) {
         );
       }
     }
-
+    //possivelmente vai estar errado isso
     $response = array(
       "id" => $slug, 
       "fotos" => $images_array,
-      "nome" => $post_meta['nome'][0],
-      "descricao" => $post_meta['descricao'][0],
-      "postado" => $post_meta['postado'][0],
-      "usuario_id" => $post_meta['usuario_id'][0],
+      "qtd_integrantes" => $post_meta['qtd_integrantes'][0],
+      "data_criacao" => $post_meta['data_criacao'][0],
+      "instituicao" => $post_meta['instituicao'][0],
+      "cursos_abrangentes" => $post_meta['cursos_abrangentes'][0],
+      "link" => $post_meta['link'][0],
+      "estado" => $post_meta['estado'][0],
+      "cidade" => $post_meta['cidade'][0],
+      "campus" => $post_meta['campus'][0],
+      "maps" => $post_meta['maps'][0],
     );
 
   } else {
-    $response = new WP_Error('nao_existe', 'PET não encontrado.', array('status' => 404));
+    $response = new WP_Error('naoexiste', 'PET não encontrado.', array('status' => 404));
   }
   return $response;
 }
 
-function api_pet_get($request) {
-  $response = pet_scheme($request["slug"]);
+function api_produto_get($request) {
+  $response = produto_scheme($request["slug"]);
   return rest_ensure_response($response);
 }
 
-function registrar_api_pet_get() {
-  register_rest_route('api', '/pet/(?P<slug>[-\w]+)', array(
+function registrar_api_produto_get() {
+  register_rest_route('api', '/produto/(?P<slug>[-\w]+)', array(
     array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => 'api_pet_get',
+      'callback' => 'api_produto_get',
     ),
   ));
 }
-add_action('rest_api_init', 'registrar_api_pet_get');
+add_action('rest_api_init', 'registrar_api_produto_get');
 
-// API PETS
-function api_pets_get($request) {
+// API PRODUTOS
+function api_produtos_get($request) {
 
   $q = sanitize_text_field($request['q']) ?: '';
   $_page = sanitize_text_field($request['_page']) ?: 0;
@@ -65,20 +70,20 @@ function api_pets_get($request) {
     );
   }
 
-  $postado = array(
-    'key' => 'postado',
+  $vendido = array(
+    'key' => 'vendido',
     'value' => 'false',
     'compare' => '='
   );
 
   $query = array(
-    'post_type' => 'pet',
+    'post_type' => 'produto',
     'posts_per_page' => $_limit,
     'paged' => $_page,
     's' => $q,
     'meta_query' => array(
       $usuario_id_query,
-      $postado,
+      $vendido,
     )
   );
 
@@ -86,26 +91,45 @@ function api_pets_get($request) {
   $posts = $loop->posts;
   $total = $loop->found_posts;
 
-  $pets = array();
+  $produtos = array();
   foreach ($posts as $key => $value) {
-    $pet[] = pet_scheme($value->post_name);
+    $produtos[] = produto_scheme($value->post_name);
   }
 
-  $response = rest_ensure_response($pets);
+  $response = rest_ensure_response($produtos);
   $response->header('X-Total-Count', $total);
 
   return $response;
 }
 
-function registrar_api_pets_get() {
-  register_rest_route('api', '/pet', array(
+function registrar_api_produtos_get() {
+  register_rest_route('api', '/produto', array(
     array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => 'api_pets_get',
+      'callback' => 'api_produtos_get',
     ),
   ));
 }
-add_action('rest_api_init', 'registrar_api_pets_get');
+add_action('rest_api_init', 'registrar_api_produtos_get');
+
+
+//////////////////////////////////////////////////////
+function consulta_pets($estado_selecionado){
+  $query_pet = new WP_Query(array(
+    'post_type' => 'pet_post_type_key', 
+    'posts_per_page' => 10, 
+    'meta_key' => 'estado',
+    'meta_value' => 'MS'
+    /*'author' =>  1,
+    /*'meta_compare' => 'not like',
+    'paged' => $currentPage*/
+  ));
+  var_dump(json_encode($query_pet));
+  return rest_ensure_response($query_pet);
+
+}
+add_action('rest_api_init', 'consulta_pets');
+//add_action( 'wp_footer', 'consulta_pets' );
 
 
 ?>

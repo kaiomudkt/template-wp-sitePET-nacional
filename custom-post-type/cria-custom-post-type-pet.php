@@ -40,10 +40,10 @@ function pet_post_type() {
 		'description'           => __( 'Tipo de post destinado somente para gerenciar grupo pet', 'text_domain' ),
 		'labels'                => $labels,
 		//'supports'              => array( 'title', 'editor' ),
-		'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
+		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//exemplo de parametros
 		//'supports'              => array( 'title'), //estava usando esse
 		//'supports'              => array( 'title', 'thumbnail' ), //mas vou testar esse, para ativar a thumbnail
-		'taxonomies'            => array( 'category', 'post_tag' ),
+		//'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -59,13 +59,15 @@ function pet_post_type() {
 		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
-		'capability_type'       => 'page',
+		'capability_type'       => 'post',
 		'menu_icon'				=> 'dashicons-groups',
+		'rewrite' => array('slug' => false, 'with_front' => false),
+		'query_var' => true,
 	);
 	register_post_type( 'pet_post_type_key', $args );//pet_post_type_key é a chave identificadora do C-P-T PET
 
 }
-add_action( 'init', 'pet_post_type', 0 );
+add_action( 'init', 'pet_post_type');
 
 
 

@@ -51,9 +51,6 @@ if ( ! is_wp_error( $request ) ) {
 }
 
 
-
-
-
 /*
 echo '<pre>';
 var_dump(wp_remote_retrieve_body($request));
