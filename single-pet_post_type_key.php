@@ -24,7 +24,7 @@ echo "$tutor";
 		<?php if( $tutor ): ?>
 		<div id="tutor" class="">
 			
-			<div class="marke" data-lat="<?php echo $tutor['lat']; ?>"></div>
+			<div class="marke" data-lat="<?php echo $tutor['lat']; /*nao sei pq isso funciona*/?>"></div>
 		</div>
 		<?php endif; ?>
 		
@@ -36,6 +36,8 @@ echo "$tutor";
 		<h2><?php the_title(); ?></h2>
 		<h3><?php the_field('date'); ?> from <?php the_field('start_time'); ?> to <?php the_field('end_time'); ?></h3>
 		<h4><?php echo $location['address']; ?></h4>
+		<?php echo get_post_meta($post->ID, 'nome_tutor', true); /* nao sei pq isso n funciona*/?>
+
 		
 	</div>
 	

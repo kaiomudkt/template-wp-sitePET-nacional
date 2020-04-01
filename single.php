@@ -36,41 +36,78 @@
         <div id="<?php echo get_the_id(); ?>" <?php post_class('clearfix'); ?> >
             <div class="post_title_con">
                 <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
-                <!-- MUDANCA DO SINGLE.PHP DO TEMA KYMA 
+                
+
+                <div>
+                    <!-- 
+                    MUDANCA DO SINGLE.PHP DO TEMA KYMA 
                     ADICIONANDO OS METADADADOS DO CPT
-                -->
-                <span class="negrito">Tutor:&nbsp;</span>
-                <?php echo get_post_meta($post->ID, 'nome_tutor', true); ?>
-                <!-- 
-                    FIM
-                -->
-							<span class="meta">
-								<span class="meta_part">
-									<a href="#">
-                                        <i class="far fa-clock"></i>
-                                        <span><?php echo esc_attr(get_the_date(get_option('date_format'), get_the_ID())); ?></span>
-                                    </a>
-								</span>
-								<span class="meta_part">
-									<a href="#">
-                                        <i class="far fa-comment"></i>
-                                        <?php esc_url(comments_popup_link(__('No Comments', 'kyma'), __('1 Comment', 'kyma'), __('% Comments', 'kyma'))); ?> <?php esc_url(edit_post_link(__('Edit', 'kyma'), ' &#124; ', '')); ?>
-                                    </a>
-								</span>
-                                <?php if (get_the_category_list() != '') { ?>
-                                    <span class="meta_part">
-										<i class="far fa-folder-open"></i>
-										<span><?php echo get_the_category_list(',', '', ''); ?></span>
-									</span>
-                                <?php } ?>
-                                <span class="meta_part">
-									<a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
-                                        <i class="far fa-user"></i>
-                                        <span><?php esc_attr(the_author()); ?></span>
-                                    </a>
-								</span>
-							</span>
+                    O certo é usar o arquivo 'single-{$post_type}.php'
+                    estou usando o arquivo 'single.php' 
+                    pois por algum motivo o 'single-{$post_type}.php' não esta sendo chamado,
+                    provavelmente pois o esse arquivo não esta sendo usando no tema pai 'Kyma',
+                    nao sei como contornar esse problema de um jeito melhor,
+                    queria realmente usar o arquivo 'single-{$post_type}.php'.
+                    -->
+                    <?php
+                        // vars
+                        $location = get_field('location');
+                        $thumbnail = get_field('thumbnail');
+                        $tutor = get_field('tutor');
+
+                        echo "$tutor";
+                    ?>
+                    <div class="wrap">
+                        <div id="event-hero">
+                            <?php if( $location ): ?>
+                            <div id="event-map" class="acf-map">
+                                <div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+                            </div>
+                            <?php endif; ?>
+                            <?php if( $tutor ): ?>
+                            <div id="tutor" class="">
+                                <div class="marke" data-lat="<?php echo $tutor['lat']; ?>"></div>
+                            </div>
+                            <?php endif; ?>
+                            <?php if( $thumbnail ): ?>
+                                <img class="thumbnail" src="<?php echo $thumbnail['url']; ?>" alt="<?php echo $thumbnail['alt']; ?>" />
+                            <?php endif; ?>
+                        </div>    
+                    </div>
+    
+                    <!-- 
+                        FIM
+                    -->
+                </div>
+
+                <span class="meta">
+                    <span class="meta_part">
+                        <a href="#">
+                            <i class="far fa-clock"></i>
+                            <span><?php echo esc_attr(get_the_date(get_option('date_format'), get_the_ID())); ?></span>
+                        </a>
+                    </span>
+                    <span class="meta_part">
+                        <a href="#">
+                            <i class="far fa-comment"></i>
+                            <?php esc_url(comments_popup_link(__('No Comments', 'kyma'), __('1 Comment', 'kyma'), __('% Comments', 'kyma'))); ?> <?php esc_url(edit_post_link(__('Edit', 'kyma'), ' &#124; ', '')); ?>
+                        </a>
+                    </span>
+                    <?php if (get_the_category_list() != '') { ?>
+                        <span class="meta_part">
+                            <i class="far fa-folder-open"></i>
+                            <span><?php echo get_the_category_list(',', '', ''); ?></span>
+                        </span>
+                    <?php } ?>
+                    <span class="meta_part">
+                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
+                            <i class="far fa-user"></i>
+                            <span><?php esc_attr(the_author()); ?></span>
+                        </a>
+                    </span>
+                </span>
             </div>
+
 			<?php if (isset($icon)) { ?>
 			<div class="post_format_con">
 				<span>
