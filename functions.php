@@ -38,7 +38,7 @@ require_once($template_diretorio_filho . "/endpoints/versao1/usuario_post.php");
 require_once($template_diretorio_filho . "/endpoints/versao1/usuario_get.php");
 require_once($template_diretorio_filho . "/endpoints/versao1/usuario_put.php");
 //api rest wp filtrando por metadata fields, TO DO , terminar de implementando
- require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
+require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -52,14 +52,3 @@ function expire_token() {
 add_action('jwt_auth_expire', 'expire_token');
 
 /////////////////////////////////////////////////////////////////////////////////
-
-function get_pet_id_by_slug($slug) {
-  $query = new WP_Query(array(
-    'name' => $slug,
-    'post_type' => 'pet_post_type_key',
-    /*'numberposts' => 1,*/
-    'fields' => 'ids'
-  ));
-  $posts = $query->get_posts();
-  return array_shift($posts);
-}
