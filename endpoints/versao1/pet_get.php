@@ -1,40 +1,39 @@
 <?php
 function api_pet_get() {
-    $estado = $_GET["estado"]; //url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,
-    //preciso pegar o parametro estado, nao estou conseguindo
+/*
+  url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,
+  Pega o valor do parametro 'estado'
+*/
+  $estado = $_GET["estado"]; 
     $response = consulta_pets($estado);
     return $response;
   }
-  
-  function registrar_api_pet_get() {
-    register_rest_route('api', '/pet', array(
+
+  function registrar_api_pet_get() {/*registra rota da API para ser acessana na URL*/
+    register_rest_route('api', '/pet', array(/*http://dominioMeuWordPress/wp-json/api/pet*/
       array(
         'methods' => WP_REST_Server::READABLE,/*GET*/
-        'callback' => 'api_pet_get',
+        'callback' => 'api_pet_get',/*chama o metodo*/
       ),
     ));
   }
   add_action('rest_api_init', 'registrar_api_pet_get');
 
-/* metodo que consulta no BD os PETs pertecentes ao um estado,
-posteriormente, provavelmente, podemos precisar que alem do nome do PET que pertence a esse estado,
-talvez tb precisemos do metadados tb, e provavelmente seja aqui a mudança,
-algo do tipo, passando como mais um parametro, outro array, com os meta dados esperados a ser retornado, algo assim  */
+/* metodo que consulta no BD os PETs pertecentes ao um estado*/
 function consulta_pets($estado_selecionado){
-    $estado_ = 'MG';
+    $estado_ = 'MS';
     $query_pet = new WP_Query(array(
+      //'posts_per_page' => 10, 
+      //'author' =>  1,
+      //'meta_compare' => 'not like'
+      //'paged' => $currentPage,
         'post_type' => 'pet_post_type_key', 
-        //'posts_per_page' => 10, 
         'meta_key' => 'estado',
-        'meta_value' => "'$estado_'"
-        //'author' =>  1,
-        //'meta_compare' => 'not like'
-        //'paged' => $currentPage
+        'meta_value' => $estado_selecionado
     ));
-    $posts = $query_pet->get_posts();
+    $posts = $query_pet->get_posts(); //pega só os POSTs da query
     return $posts;
-  
   }
-  add_action('rest_api_init', 'consulta_pets');
-  //add_action( 'wp_footer', 'consulta_pets' );
+  //add_action('rest_api_init', 'consulta_pets');// nao sei se precisa desse add_action
+
 ?>

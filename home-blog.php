@@ -1,5 +1,4 @@
 <?php
-
 /*
 Este arquivo substitui o arquivo "home-blog.php" do tema Pai "Kyma"
 que esta sendo usado para realizar as postagens dos ultimos post feito nesta instalacao do WP.
@@ -17,11 +16,12 @@ ainda falta fazer o desinger, ou aproveitar o designer do "home-blog.php" do tem
 
 
 $arguments = array('method' => 'GET');
-//$url = 'http://demo.wp-api.org/wp-json/wp/v2/posts';
-//$url = 'http://localhost:8083/?rest_route=/wp/v2/posts';
-$url = 'https://www.facom.ufms.br/wp-json/wp/v2/posts';
-//$url = 'http://grupospet.ufms.br/?rest_route=/wp/v2/posts';
-//$url = 'http://grupospet.ufms.br/wp-json/wp/v2/posts';
+/* esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP
+   esse parametro '?per_page=1' pede somente 1 poste,
+   acredito que seja o ultimo
+*/
+/* o objetivo agora é pegar de diversos sites diferentes a ultima postagem de cada Estado do BR */
+$url = 'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1';
 
 // Faz a solicitação GET para o endereço.
 $request = wp_remote_get( $url, $arguments);
@@ -49,10 +49,3 @@ if ( ! is_wp_error( $request ) ) {
 	$error_msg = $request->get_error_message();
 	echo "error: request = wp_remote_get(): $error_msg";
 }
-
-
-/*
-echo '<pre>';
-var_dump(wp_remote_retrieve_body($request));
-echo '</pre>';
-*/

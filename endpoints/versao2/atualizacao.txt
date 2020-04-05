@@ -8,3 +8,4 @@ mas se for só criar um pet_put.php ou pet_delete.php ou qualquer outro nao send
 pode criar na propria 'versao1', faca como achar melhor, 
 mas sempre lembre de n quebrar os sites que usam  o endpoint 'versao1/pet_get.php' 
 :)
+
