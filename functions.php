@@ -43,9 +43,9 @@ require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
 
 //tempo que demora para expira o token
 //https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/
-function expire_token() {
-  return time() + (60 * 60);//1 hora
-}
-add_action('jwt_auth_expire', 'expire_token');
+// function expire_token() {
+//   return time() + (60 * 60);//1 hora
+// }
+// add_action('jwt_auth_expire', 'expire_token');
 
 /////////////////////////////////////////////////////////////////////////////////
