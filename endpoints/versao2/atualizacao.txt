@@ -1,0 +1,10 @@
+Ola Petiano, 
+se voce chegou aqui, é pq esta dando manutencao neste projeto, 
+parabens!
+se quiser adicionar um novo endpoint para 'versao1/pet_get.php',
+sem quebrar os outros sites que estao usando,
+crie um novo endpoint na 'versao2', assim ambos os endpoints vao continuar funcionado =D,
+mas se for só criar um pet_put.php ou pet_delete.php ou qualquer outro nao sendo o "GET" que ja existe,
+pode criar na propria 'versao1', faca como achar melhor, 
+mas sempre lembre de n quebrar os sites que usam  o endpoint 'versao1/pet_get.php' 
+:)

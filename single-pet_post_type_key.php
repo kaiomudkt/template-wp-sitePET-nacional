@@ -1,4 +1,10 @@
 <?php
+/*
+Este arquivo é especialmente para mostrar um unico poste do tipo PET,
+as postagens normais são mostradas pelo o arquivo "single.php",
+e as portagens personzalidas do C-P-T sao mostrada neste arquivo "single-pet_post_type_key.php"
+*/
+
 //https://www.advancedcustomfields.com/resources/adding-fields-posts/
 get_header();
 the_post();

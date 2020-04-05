@@ -28,15 +28,12 @@ add_action('wp_enqueue_scripts' , 'carrega_estilos');
 //caminho (/var/www/html/wp-content/themes/GruposPET)
 $template_diretorio_filho = get_stylesheet_directory();
 //echo $template_diretorio_filho;
-require_once($template_diretorio_filho . "/custom-post-type/cria-custom-post-type-pet.php");
+require_once($template_diretorio_filho . "/cria-custom-post-type-pet.php");
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
 //endpoints
-require_once($template_diretorio_filho . "/endpoints/versao1/usuario_post.php");
-require_once($template_diretorio_filho . "/endpoints/versao1/usuario_get.php");
-require_once($template_diretorio_filho . "/endpoints/versao1/usuario_put.php");
 //api rest wp filtrando por metadata fields, TO DO , terminar de implementando
 require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
 
