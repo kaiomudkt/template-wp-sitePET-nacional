@@ -34,17 +34,19 @@ e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
 }
 
 #lista_pet_estado{
-	width: ;
 	text-align: center;
 	margin-top: 100px;
 	margin-right: 300px;
-	/*background-color: blue;*/
+	background-color: red;
 	float: right;
-	overflow: scroll;/*configurar melhor esse scroll*/
+	overflow: auto;/*configurar melhor esse scroll*/
+	box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+	height: 20px;
 }
 
 #lista_pet_estado ul li{
 	color: white;
+	background-color:white;
 }
 
 .light_header #navy > li > a,
@@ -57,4 +59,13 @@ e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
 .light_header #navy > li > .slicknav_row > a {
     color: #484848;
 
+}
+
+.div_map_svg{
+	width: 20px;
+	background-color: yellow;
+}
+
+.negrito{
+	font-weight: 900;
 }

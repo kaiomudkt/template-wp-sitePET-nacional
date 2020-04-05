@@ -1,7 +1,7 @@
 	
 <!-- MAPA BRASIL -->
 <div id="mapa_pets_brasil">
-    <div style="">
+    <div class="div_problema">
         <div id="mapa_brasil">
             <?php
                 include('Mapa+do+Brasil+SVGa.html');
@@ -25,11 +25,10 @@
                 ?>
                 <ul>
                     <li>
-
-                        <a href="<?php the_permalink(); ?>">
-                            
+                        <a href=" <?php the_permalink(); ?> ">
                             <?php the_title(); ?>
                         </a>
+                            <?php echo get_post_meta($post->ID, 'nome_tutor', true); ?>
                      </li>
                 </ul>
                 <?php  
