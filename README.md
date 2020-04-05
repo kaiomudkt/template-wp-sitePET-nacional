@@ -5,13 +5,18 @@ https://github.com/kaiomudkt/template-wp-sitePET-nacional
 Esse projeto atende à demanda de divulgação do projeto Programa de Educação Tutorial - PET, com o uso do CMS Wordpress, onde por meio do API REST do Wordpress faz a republicação das postagens de cada instalação do Wordpress para outra instalação do Wordpress
 ______________________________________________________________________________________________________
 ### Criado por:
-    **Kaio Mitsuharu Lino Aida** (PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2)
+    Kaio Mitsuharu Lino Aida
+    PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2
+    Curso: Sistemas de Informação FACOM/UFMS
     https://github.com/kaiomudkt
 _______________________________________
-    **Kendy*
+    Kendy Yahiro
+    Curso: Sistemas de Informação FACOM/UFMS
 _______________________________________
-    **Vinicus Espindola** / https://github.com/Vinny1892
-
+    Vinicus Espindola
+    PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2
+    Curso: Sistemas de Informação FACOM/UFMS
+    https://github.com/Vinny1892
 ______________________________________________________________________________________________________
 
 ### Este projeto possui 5 partes:
