@@ -80,3 +80,10 @@ Nós tivemos problemas com a autencicação via JWT, pois os headers de autoriza
 https://wordpress.org/support/topic/fix-basic-authentication-jwt_auth_bad_auth_header-error/
 
 # template-wp-sitePET-nacional
+
+
+
+
+__________________________
+explicar tema filho
+__________________________

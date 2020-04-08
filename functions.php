@@ -49,3 +49,14 @@ require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
 // add_action('jwt_auth_expire', 'expire_token');
 
 /////////////////////////////////////////////////////////////////////////////////
+/*
+O arquivo 'meta_boxes.php' vai cuidar dos metadados,
+do custom-Post-Type do tipo PET
+*/
+require_once($template_diretorio_filho . "/meta_boxes_pet.php");
+
+/*
+criar arquivo que add metadado no USER, para saber de qual estado esse USER vai gerenciar
+https://developer.wordpress.org/reference/functions/add_user_meta/
+add_user_meta( int $user_id, string $meta_key, mixed $meta_value, bool $unique = false )
+*/
