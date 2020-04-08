@@ -1,7 +1,7 @@
 <?php
 function api_pet_get() {
 /*
-  url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,
+  url: 'http://dominio/wp-json/api/pet?estado='+estado,
   Pega o valor do parametro 'estado'
 */
   $estado = $_GET["estado"]; 
