@@ -27,7 +27,6 @@ e as portagens personzalidas do C-P-T sao mostrada neste arquivo "single-pet_pos
 get_header();
 the_post();
 
-
 // vars
 $location = get_field('location');
 $thumbnail = get_field('thumbnail');
@@ -41,41 +40,72 @@ $estado = get_field('estado');
 $cidade = get_field('cidade');
 $campus = get_field('campus');
 
-echo "$tutor";
-echo "$qtd_integrantes";
-echo "$data_criacao";
-echo "$instituicao_pertencente";
-echo "$cursos_abrangentes";
-echo "$link_site";
-echo "$estado";
-echo "$cidade";
-echo "$campus";
+
 ?>
 
 <div class="wrap">
 	
 	<div id="event-hero">
 		
-		<?php if( $location ): ?>
-		<div id="event-map" class="acf-map">
-			<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
-		</div>
-		<?php endif; ?>
 		
-		<?php if( $tutor ): ?>
+		
+		<?php if( $tutor): ?>
 		<div id="tutor" class="">
-			<div class="marke" data-lat="<?php echo $tutor; /*nao sei pq isso funciona*/?>"></div>
+
+			<div class="marke" data-lat="<?php echo $tutor['lat'];?>"> <?php echo $tutor; ?></div>
 		</div>
 		<?php endif; ?>
 
-		<?php if( $tutor ): ?>
-		<div id="tutor" class="">
-			<div class="marke" data-lat="<?php echo $tutor['lat']; /*nao sei pq isso funciona*/?>"></div>
+		<?php if( $qtd_integrantes ): ?>
+		<div id="qtd_integrantes" class="">
+			<div class="marke" data-lat="<?php echo $qtd_integrantes['lat']; ?>"><?php echo $qtd_integrantes; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $instituicao_pertencente ): ?>
+		<div id="instituicao_pertencente" class="">
+			<div class="marke" data-lat="<?php echo $instituicao_pertencente['lat']; ?>"><?php echo $instituicao_pertencente; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $cursos_abrangentes ): ?>
+		<div id="cursos_abrangentes" class="">
+			<div class="marke" data-lat="<?php echo $cursos_abrangentes['lat']; ?>"><?php echo $cursos_abrangentes; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $link_site ): ?>
+		<div id="link_site" class="">
+			<div class="marke" data-lat="<?php echo $link_site['lat']; ?>"><?php echo $link_site; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $estado ): ?>
+		<div id="estado" class="">
+			<div class="marke" data-lat="<?php echo $estado['lat']; ?>"><?php echo $estado; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $cidade ): ?>
+		<div id="cidade" class="">
+			<div class="marke" data-lat="<?php echo $cidade['lat']; ?>"><?php echo $cidade; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $campus ): ?>
+		<div id="campus" class="">
+			<div class="marke" data-lat="<?php echo $campus['lat']; ?>"><?php echo $cidade; ?></div>
 		</div>
 		<?php endif; ?>
 
 		<?php if( $thumbnail ): ?>
 			<img class="thumbnail" src="<?php echo $thumbnail['url']; ?>" alt="<?php echo $thumbnail['alt']; ?>" />
+		<?php endif; ?>
+
+		<?php if( $location ): ?>
+		<div id="event-map" class="acf-map">
+			<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+		</div>
 		<?php endif; ?>
 		
 		<h2><?php the_title(); ?></h2>
