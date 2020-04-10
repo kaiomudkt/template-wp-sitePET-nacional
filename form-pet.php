@@ -72,17 +72,23 @@
 
 
 <p class="meta-options hcf_field">
-    <label for="estado">Estado (Unidade Federativa)/ <?php echo esc_attr( get_post_meta( get_current_user_id(),  'estado', true) ); ?></label>
-    <input id="estado"
+    <label for="estado">Estado (Unidade Federativa)</label>
+    <input id="estado" disabled
     type="text"
     name="estado"
     value="<?php 
+    /**
+     * get_the_ID () Recupere o ID do item atual no loop do WordPress.
+    */
+        //se o post ja tiver atributo 'estado'
         if(get_post_meta( get_the_ID(), 'estado', true ) != null){
             echo esc_attr( get_post_meta( get_the_ID(), 'estado', true ) ); 
         }else{
+        //se nao tiver, usa o atributo 'estado' do user atual
             echo esc_attr( get_user_meta( get_current_user_id(),  'estado', true) );
         }?>">
 </p>
-    
-    <?php echo esc_attr( get_user_meta( get_current_user_id(),  'estado', true) );?>
+
+
+
     </div>
