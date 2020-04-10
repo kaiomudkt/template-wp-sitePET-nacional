@@ -1,5 +1,5 @@
 /*
-Theme Name: GruposPET
+Theme Name: GruposPET - Nacional
 Template: kyma
 Theme URI: https://www.webhuntinfotech.com/premium-themes/kyma-advanced-premium-wordpress-theme/
 Author: Kaio Mitsuharu Lino Aida
@@ -19,6 +19,9 @@ quando o tema pai for atualizado, somente as mundacas feitas no tema pai serao p
 e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
 */
 
+h2{
+	font-family: cursive;
+}
 #mapa_pets_brasil{
 	background: #00a69b;
 	overflow: hidden;

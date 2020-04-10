@@ -43,14 +43,6 @@
 </p>
 
 <p class="meta-options hcf_field">
-    <label for="cursos_abrangentes">Instituição que pertencente</label>
-    <input id="cursos_abrangentes"
-    type="text"
-    name="cursos_abrangentes"
-    value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'cursos_abrangentes', true ) ); ?>">
-</p>
-
-<p class="meta-options hcf_field">
     <label for="link_site">Link do site</label>
     <input id="link_site"
     type="text"

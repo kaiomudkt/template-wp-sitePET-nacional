@@ -4,6 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -17,7 +18,7 @@
                 $("#loading").show(); //icon 
                 //faz requisicao
                 $.ajax({
-                    url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,
+                    url: 'http://localhost/projetoGruposPET/wp-json/api/pet?estado='+estado,  //http://localhost:8083
                     type: "GET",
                     dataType: "json"
                 }).done(function (response) { //depois da requisicao

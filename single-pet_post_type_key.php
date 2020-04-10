@@ -28,24 +28,25 @@ get_header();
 the_post();
 
 // vars
-$location = get_field('location');
-$thumbnail = get_field('thumbnail');
-$tutor = get_field('tutor');
-$qtd_integrantes = get_field('qtd_integrantes');
-$data_criacao = get_field('data_criacao');
-$instituicao_pertencente = get_field('instituicao_pertencente');
-$cursos_abrangentes = get_field('cursos_abrangentes');
-$link_site = get_field('link_site');
-$estado = get_field('estado');
-$cidade = get_field('cidade');
-$campus = get_field('campus');
+
+$location = esc_attr( get_post_meta( get_the_ID(), 'location', true));
+$thumbnail = esc_attr( get_post_meta( get_the_ID(), 'thumbnail', true));
+$tutor = esc_attr( get_post_meta( get_the_ID(), 'tutor', true));
+$qtd_integrantes = esc_attr( get_post_meta( get_the_ID(), 'qtd_integrantes', true));
+$data_criacao = esc_attr( get_post_meta( get_the_ID(), 'data_criacao', true));
+$instituicao_pertencente = esc_attr( get_post_meta( get_the_ID(), 'instituicao_pertencente', true));
+$cursos_abrangentes = esc_attr( get_post_meta( get_the_ID(), 'cursos_abrangentes', true));
+$link_site = esc_attr( get_post_meta( get_the_ID(), 'link_site', true));
+$estado = esc_attr( get_post_meta( get_the_ID(), 'estado', true));
+$cidade = esc_attr( get_post_meta( get_the_ID(), 'cidade', true));
+$campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 
 
 ?>
-
 <div class="wrap">
 	
 	<div id="event-hero">
+		<h2><?php the_title(); ?></h2>
 		
 		
 		
@@ -107,13 +108,7 @@ $campus = get_field('campus');
 			<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
 		</div>
 		<?php endif; ?>
-		
-		<h2><?php the_title(); ?></h2>
-		<h3><?php the_field('date'); ?> from <?php the_field('start_time'); ?> to <?php the_field('end_time'); ?></h3>
-		<h4><?php echo $location['address']; ?></h4>
-		<?php echo get_post_meta($post->ID, 'nome_tutor', true); /* nao sei pq isso n funciona*/?>
-
-		
+	
 	</div>
 	
 	<div id="primary" class="content-area">
@@ -124,4 +119,5 @@ $campus = get_field('campus');
 	
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer(); 
+?>
