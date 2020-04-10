@@ -18,7 +18,7 @@
                 $("#loading").show(); //icon 
                 //faz requisicao
                 $.ajax({
-                    url: 'http://localhost/projetoGruposPET/wp-json/api/pet?estado='+estado,  //http://localhost:8083
+                    url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,  //http://localhost:8083
                     type: "GET",
                     dataType: "json"
                 }).done(function (response) { //depois da requisicao

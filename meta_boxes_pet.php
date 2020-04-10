@@ -1,6 +1,5 @@
 <?php
-//https://metabox.io/how-to-create-custom-meta-boxes-custom-fields-in-wordpress/
-/**
+    /**
  * Register meta boxes.
  */
 /*

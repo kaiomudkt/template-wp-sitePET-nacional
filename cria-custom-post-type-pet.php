@@ -39,10 +39,8 @@ function pet_post_type() {
 		'label'                 => __( 'pet', 'text_domain' ),
 		'description'           => __( 'Tipo de post destinado somente para gerenciar grupo pet', 'text_domain' ),
 		'labels'                => $labels,
-		//'supports'              => array( 'title', 'editor' ),
-		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//exemplo de parametros
-		//'supports'              => array( 'title'), //estava usando esse
-		//'supports'              => array( 'title', 'thumbnail' ), //mas vou testar esse, para ativar a thumbnail
+		//'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//'custom-fields' no momento q for add novo pet, parece a opção de fild customizado
+		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
 		//'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,

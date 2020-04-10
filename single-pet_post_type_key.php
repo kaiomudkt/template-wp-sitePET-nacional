@@ -6,29 +6,11 @@ e as portagens personzalidas do C-P-T sao mostrada neste arquivo "single-pet_pos
 */
 
 //https://www.advancedcustomfields.com/resources/adding-fields-posts/
-/*
-    $fields_pet2 = [
-        'tutor',
-        'qtd_integrantes', 
-        'data_criacao', 
-        'instituicao_pertencente', 
-        'cursos_abrangentes',
-        'link_site',
-        'estado',
-        'cidade',
-        'campus',
-        'maps' => array(
-            'longitude',
-            'latitude',
-            'zoom'
-        )
-    ];
-*/
 get_header();
 the_post();
 
-// vars
 
+// vars
 $location = esc_attr( get_post_meta( get_the_ID(), 'location', true));
 $thumbnail = esc_attr( get_post_meta( get_the_ID(), 'thumbnail', true));
 $tutor = esc_attr( get_post_meta( get_the_ID(), 'tutor', true));
@@ -40,16 +22,11 @@ $link_site = esc_attr( get_post_meta( get_the_ID(), 'link_site', true));
 $estado = esc_attr( get_post_meta( get_the_ID(), 'estado', true));
 $cidade = esc_attr( get_post_meta( get_the_ID(), 'cidade', true));
 $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
-
-
 ?>
+
 <div class="wrap">
-	
 	<div id="event-hero">
 		<h2><?php the_title(); ?></h2>
-		
-		
-		
 		<?php if( $tutor): ?>
 		<div id="tutor" class="">
 
@@ -116,8 +93,5 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 			<?php the_content(); ?>
 		</main>
 	</div>
-	
 </div>
-
-<?php get_footer(); 
-?>
+<?php get_footer();?>
