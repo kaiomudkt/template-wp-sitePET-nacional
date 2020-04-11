@@ -20,14 +20,19 @@ add_action('init', function() {
        <tr>
          <th><label for="estado">Estado que gerencia</label></th>
          <td>
-           <select id="estado" name="estado">
+           <?php $estadoAtual = get_user_meta( get_current_user_id(),  'estado', true); 
+           //TODO 
+           //FAZER ISSO FUNCIONAR
+           ?>
+           <select id="estado" name="estado" >
+             <option value="<?php $estadoAtual ?>" selected> <?php $estadoAtual ?> </option>
              <?php
              /* quando ja salvo, e quiser mostrar, iniciar o select com valor atual */
              // get_user_meta( get_current_user_id(),  'estado', true)
-               foreach ( $estados as $estado ) {
-                 printf( '<option value=" %1$s "> %1$s </option>', $estado,$estado );
-               }
-             ?>
+             foreach ( $estados as $estado ) {
+               printf( '<option value=" %1$s "> %1$s </option>', $estado,$estado );
+              }
+              ?>
           </select>
          </td>
        </tr>
@@ -39,7 +44,6 @@ add_action('init', function() {
 
     if ( !current_user_can( 'edit_user', $user_id ) )
         return false;
-
     update_user_meta( $user_id, 'estado', $_POST['estado'] );
   }
   add_action( 'user_register', 'save_extra_profile_fields', 10, 1 );

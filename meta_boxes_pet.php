@@ -31,23 +31,6 @@ function salva_meta_box( $post_id ) {
     if ( $parent_id = wp_is_post_revision( $post_id ) ) {
         $post_id = $parent_id;
     }
-    $fields_pet2 = [
-        'tutor',
-        'qtd_integrantes', 
-        'data_criacao', 
-        'instituicao_pertencente', 
-        'cursos_abrangentes',
-        'link_site',
-        'estado',
-        'cidade',
-        'campus',
-        'maps' => array(
-            'longitude',
-            'latitude',
-            'zoom'
-        )
-    ];
-
     $fields_pet = [
         'tutor',
         'qtd_integrantes', 
@@ -55,10 +38,11 @@ function salva_meta_box( $post_id ) {
         'instituicao_pertencente', 
         'cursos_abrangentes',
         'link_site',
-        'estado',
         'cidade',
         'campus',
-        
+        'longitude',
+        'latitude',
+        'zoom'
     ];
     /*
     'foreach percorre o vetor 'fields_pet'
