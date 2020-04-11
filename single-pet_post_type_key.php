@@ -7,6 +7,7 @@ e as portagens personzalidas do C-P-T sao mostrada neste arquivo "single-pet_pos
 
 //https://www.advancedcustomfields.com/resources/adding-fields-posts/
 get_header();
+
 the_post();
 
 
@@ -26,10 +27,11 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 
 <div class="wrap">
 	<div id="event-hero">
+	
 		<h2><?php the_title(); ?></h2>
+
 		<?php if( $tutor): ?>
 		<div id="tutor" class="">
-
 			<div class="marke" data-lat="<?php echo $tutor['lat'];?>"> <?php echo $tutor; ?></div>
 		</div>
 		<?php endif; ?>
