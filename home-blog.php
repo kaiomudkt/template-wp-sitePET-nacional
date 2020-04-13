@@ -20,32 +20,73 @@ $arguments = array('method' => 'GET');
    esse parametro '?per_page=1' pede somente 1 poste,
    acredito que seja o ultimo
 */
-/* o objetivo agora é pegar de diversos sites diferentes a ultima postagem de cada Estado do BR */
-$url = 'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1';
+/**
+ * adicionar a URL de cada site estadual nesse Array,
+ * lembre de colocar nesse formato
+ * 1º o dominio: http://meuDominio.com.br
+ * depois concatena com: /wp-json/wp/v2/posts?per_page=1
+ * ficando: http://meuDominio.com.br/wp-json/wp/v2/posts?per_page=1
+ */
+$urls = [
+    'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1',
+    'https://www.ufms.br/wp-json/wp/v2/posts?per_page=1',
+    'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1'
+];
+?>
 
-// Faz a solicitação GET para o endereço.
-$request = wp_remote_get( $url, $arguments);
-// Se não houve erro...
-if ( ! is_wp_error( $request ) ) {
-    // pegamos o "corpo" da resposta recebida...
-    $body = wp_remote_retrieve_body( $request );
-    // e transformamos de JSON em um array PHP normal.
-    $data = json_decode( $body );
- 
-    // Se não houve erro nesta etapa, iteramos pelo array
-    // e montamos uma lista com título e link.
-    if ( ! is_wp_error( $data ) ) {
-	    echo '<ul>';
-	    foreach( $data as $rest_post ) {
-		    echo '<li>';
-			    echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
-		    echo '</li>';
-	    }
-	    echo '</ul>';
-    }else{
-    	echo 'erro: is_wp_error( $data)';
-    }
-}else{
-	$error_msg = $request->get_error_message();
-	echo "error: request = wp_remote_get(): $error_msg";
-}
+<section class="content_section bg_gray">
+    <div class="content row_spacer no_padding">
+        <div class="main_title centered upper">
+            <h2 id='blog-heading'>Últimas postagens
+                <span class="line">
+                    <i class="fa fa-edit"></i>
+                </span>
+            </h2>
+        </div>
+        <div class="rows_container clearfix">
+            <div class="hm_blog_grid">
+                <ul class="hm_filter_wrapper_con masonry ajax_posts">
+                    <?php 
+                        foreach($urls as $url){
+                            ?>
+                            <li class="filter_item_block animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
+                                <div class="blog_grid_con">
+                                    <?php
+                                    // Faz a solicitação GET para o endereço.
+                                    $request = wp_remote_get( $url, $arguments);
+                                    // Se não houve erro...
+                                    if ( ! is_wp_error( $request ) ) {
+                                        // pegamos o "corpo" da resposta recebida...
+                                        $body = wp_remote_retrieve_body( $request );
+                                        // e transformamos de JSON em um array PHP normal.
+                                        $data = json_decode( $body );
+                                        // Se não houve erro nesta etapa, iteramos pelo array
+                                        // e montamos uma lista com título e link.
+                                        if ( ! is_wp_error( $data ) ) {
+                                            echo '<ul>';
+                                            foreach( $data as $rest_post ) {
+                                                echo '<li>';
+                                                    echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
+                                                echo '</li>';
+                                            }
+                                            echo '</ul>';
+                                        }else{
+                                            echo 'erro: is_wp_error( $data)';
+                                            // em produção tem que tirar o echo, para n mostrar pro usuario final se der erro
+                                        }
+                                    }else{
+                                        $error_msg = $request->get_error_message();
+                                            // em produção tem que tirar o echo, para n mostrar pro usuario final se der erro
+                                            echo "error: request = wp_remote_get(): $error_msg";
+                                    }
+                                    ?>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
