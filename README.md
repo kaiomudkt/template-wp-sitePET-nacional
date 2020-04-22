@@ -10,8 +10,10 @@ ________________________________________________________________________________
     Curso: Sistemas de Informação FACOM/UFMS
     https://github.com/kaiomudkt
 _______________________________________
-    Kendy Yahiro
+    Fernando Kendy Yahiro
+    PETIANO BOLSISTA DESDE 2018/2 ATÉ ...
     Curso: Sistemas de Informação FACOM/UFMS
+    https://github.com/kendyyahiro
 _______________________________________
     Vinicus Espindola
     PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2

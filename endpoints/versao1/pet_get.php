@@ -19,7 +19,7 @@ function api_pet_get() {
   }
   add_action('rest_api_init', 'registrar_api_pet_get');
 
-/* metodo que consulta no BD os PETs pertecentes ao um estado*/
+/* metodo que consulta no BD os PETs pertecentes a um estado*/
 function consulta_pets($estado_selecionado){
     $estado_ = 'MS';
     $query_pet = new WP_Query(array(
