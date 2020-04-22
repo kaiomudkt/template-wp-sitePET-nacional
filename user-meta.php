@@ -13,13 +13,12 @@ add_action('init', function() {
   function additional_profile_fields( $user ) {
 
     //$departments = get_terms(['taxonomy' => 'department', 'hide_empty' => false]);
-    $estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 
-    'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS',
-    'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
+    $estados = ['tocantins', 'bahia', 'sergipe', 'pernambuco', 'alagoas', 'rio-grande-do-norte', 
+    'ceara', 'piaui', 'maranhao', 'amapa', 'para', 'roraima', 'amazonas', 'rondonia' ];
 ?>
       <table class="form-table">
        <tr>
-         <th><label for="estado">Sigla do Estado</label></th>
+         <th><label for="estado">Estado que gerencia</label></th>
          <td>
            <?php $estadoAtual = get_user_meta( get_current_user_id(),  'estado', true); 
            //TODO 

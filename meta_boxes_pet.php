@@ -40,7 +40,6 @@ function salva_meta_box( $post_id ) {
         'link_site',
         'cidade',
         'campus',
-        'estado',
         'longitude',
         'latitude',
         'zoom'

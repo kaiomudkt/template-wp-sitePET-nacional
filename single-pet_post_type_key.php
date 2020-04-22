@@ -27,114 +27,56 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 
 <div class="wrap">
 	<div id="event-hero">
+	
+		<h2><?php the_title(); ?></h2>
 
-	<div class="jumbotron" style="padding: 10px 20px;">
-		<h2 class="display-4" style="color:#666666"><?php the_title(); ?> ~ <?php echo $instituicao_pertencente; ?></h2>
 		<?php if( $tutor): ?>
-			<h4 class="lead" id="tutor" style="color:#666666">Tutor: <?php echo $tutor; ?></h4>
-		<?php endif; ?>
-		<hr class="my-4">
-		<?php if( $qtd_integrantes ): ?>
-			<h5 style="color:#666666;font-size: 18px;">Quantidade de Membros: <?php echo $qtd_integrantes; ?> petianos</h5>
+		<div id="tutor" class="">
+			<div class="marke" data-lat="<?php echo $tutor['lat'];?>"> <?php echo $tutor; ?></div>
+		</div>
 		<?php endif; ?>
 
 		<?php if( $qtd_integrantes ): ?>
-			<h5 style="color:#666666;font-size: 18px;"><?php echo $cidade; ?> - <?php echo $estado; ?></h5>
+		<div id="qtd_integrantes" class="">
+			<div class="marke" data-lat="<?php echo $qtd_integrantes['lat']; ?>"><?php echo $qtd_integrantes; ?></div>
+		</div>
 		<?php endif; ?>
-		<p class="lead">
-			<a class="btn btn-primary btn-lg" href="<?php echo $link_site; ?>" role="button" style="padding: 5px 10px;border-color: #1ccdca;">
-			Venha Conferir
-			</a>
- 		</p>
-</div>
-<?php
-if ( !function_exists( 'kyma_more_post_ajax' ) ) {
-    function kyma_more_post_ajax(){
-        $kyma_theme_options = kyma_theme_options();
-        $ppp                 = (isset($_POST['ppp'])) ? $_POST['ppp'] : 3;
-        $offset              = (isset($_POST['offset'])) ? $_POST['offset'] : 0;
-        
-        $args = array(
-            'post_type'      => 'post',
-            'posts_per_page' => $ppp,
-            'offset'         => $offset,
-			'post_status' 	=> 'publish'
-        );
-        if (isset($kyma_theme_options['home_post_cat']) && !empty($kyma_theme_options['home_post_cat'])) {
-            $args['category__in'] = $kyma_theme_options['home_post_cat'];
-        }
 
-        $loop = new WP_Query($args);
-        $out  = '';
-        $i    = 1;
-        if ($loop->have_posts()):
-            while ($loop->have_posts()):
-                $loop->the_post();
-				ob_start();
-				$icon = '';
-               ?>
-				<li class="filter_item_block grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
-					<div class="blog_grid_block">
-						<div class="feature_inner">
-							<div class="feature_inner_corners">
-								<?php
-								if (has_post_thumbnail()) {
-									$icon = 'far fa-image';
-									$url = wp_get_attachment_url(get_post_thumbnail_id($post->ID));
-									?>
-									<div class="feature_inner_btns">
-										<a href="<?php echo esc_url($url); ?>" class="expand_image"><i
-												class="fa fa-expand"></i></a>
-										<a href="<?php echo esc_url(get_the_permalink()); ?>"
-										   class="icon_link"><i class="fa fa-link"></i></a>
-									</div>
-									<div class="porto_galla">
-										<a href="<?php echo esc_url($url); ?>" class="feature_inner_ling"
-									   data-rel="magnific-popup">
-										<?php 
-											if($kyma_theme_options['home_blog_layout'] == 'content'){
-											   the_post_thumbnail('kyma_home_post_image');
-											}else{
-											   the_post_thumbnail('kyma_home_post_image_fluid');
-											} ?>
-										</a>
-									</div>	
-										<?php
-								} ?>
-							</div>
-						</div>
-						<div class="blog_grid_con">
-							<?php if (isset($icon) && $icon!='') { ?>
-							<a href="" class="blog_grid_format"><i class="<?php echo esc_attr($icon); ?>"></i></a>
-							<?php } ?>
-							<h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
-						<span class="meta">
-							<span
-								class="meta_part"><?php echo esc_attr(get_the_date(get_option('date_format'), get_the_ID())); ?></span>
-							<span class="meta_slash">/</span>
-							<span
-								class="meta_part"><?php esc_url(comments_popup_link(__('No Comments', 'kyma'), __('1 Comment', 'kyma'), __('% Comments', 'kyma'))); ?> <?php esc_url(edit_post_link(__('Edit', 'kyma'), ' &#124; ', '')); ?></span>
-							<span class="meta_slash">/</span>
-							<span class="meta_part"><?php echo get_the_category_list(','); ?></span>
-						</span>
-							<?php the_excerpt(); ?>
-						</div>
-					</div>
-				</li>
-               <?php $i != 3 ? $i++ : $i = 1;
-            endwhile;
-        endif;
-        wp_reset_postdata();
-		echo ob_get_clean();die;
-    }
-}
-?>
+		<?php if( $instituicao_pertencente ): ?>
+		<div id="instituicao_pertencente" class="">
+			<div class="marke" data-lat="<?php echo $instituicao_pertencente['lat']; ?>"><?php echo $instituicao_pertencente; ?></div>
+		</div>
+		<?php endif; ?>
+
 		<?php if( $cursos_abrangentes ): ?>
 		<div id="cursos_abrangentes" class="">
 			<div class="marke" data-lat="<?php echo $cursos_abrangentes['lat']; ?>"><?php echo $cursos_abrangentes; ?></div>
 		</div>
 		<?php endif; ?>
 
+		<?php if( $link_site ): ?>
+		<div id="link_site" class="">
+			<div class="marke" data-lat="<?php echo $link_site['lat']; ?>"><?php echo $link_site; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $estado ): ?>
+		<div id="estado" class="">
+			<div class="marke" data-lat="<?php echo $estado['lat']; ?>"><?php echo $estado; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $cidade ): ?>
+		<div id="cidade" class="">
+			<div class="marke" data-lat="<?php echo $cidade['lat']; ?>"><?php echo $cidade; ?></div>
+		</div>
+		<?php endif; ?>
+
+		<?php if( $campus ): ?>
+		<div id="campus" class="">
+			<div class="marke" data-lat="<?php echo $campus['lat']; ?>"><?php echo $cidade; ?></div>
+		</div>
+		<?php endif; ?>
 
 		<?php if( $thumbnail ): ?>
 			<img class="thumbnail" src="<?php echo $thumbnail['url']; ?>" alt="<?php echo $thumbnail['alt']; ?>" />
