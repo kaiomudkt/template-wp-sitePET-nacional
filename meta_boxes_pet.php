@@ -41,6 +41,7 @@ function salva_meta_box( $post_id ) {
         'cidade',
         'campus',
         'longitude',
+        'estado',
         'latitude',
         'zoom'
     ];
@@ -52,7 +53,9 @@ function salva_meta_box( $post_id ) {
             /* salva no post deste '$post_id',
             chave: valor */
             update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+        }else{
+            // echo 'não exite esse parameto' . $field;
         }
-     }
+    }
 }
 add_action( 'save_post', 'salva_meta_box' );
