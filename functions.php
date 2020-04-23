@@ -60,4 +60,5 @@ criar arquivo que add metadado no USER, para saber de qual estado esse USER vai 
 https://developer.wordpress.org/reference/functions/add_user_meta/
 add_user_meta( int $user_id, string $meta_key, mixed $meta_value, bool $unique = false )
 */
+
 require_once($template_diretorio_filho . "/user-meta.php");

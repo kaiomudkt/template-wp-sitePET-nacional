@@ -15,22 +15,33 @@ add_action('init', function() {
     //$departments = get_terms(['taxonomy' => 'department', 'hide_empty' => false]);
     $estados = ['tocantins', 'bahia', 'sergipe', 'pernambuco', 'alagoas', 'rio-grande-do-norte', 
     'ceara', 'piaui', 'maranhao', 'amapa', 'para', 'roraima', 'amazonas', 'rondonia' ];
+
+
+
 ?>
+
       <table class="form-table">
        <tr>
          <th><label for="estado">Estado que gerencia</label></th>
          <td>
            <?php $estadoAtual = get_user_meta( get_current_user_id(),  'estado', true); 
-           //TODO 
-           //FAZER ISSO FUNCIONAR
+            $screen = get_current_screen();
+            if ($screen->base == "profile") {
+            ?>  
+              <select id="estado" name="estado" disabled>
+             <?php 
+            }else{
+            ?>  
+              <select id="estado" name="estado" >
+             <?php 
+            }
            ?>
-           <select id="estado" name="estado" >
-             <option value="<?php $estadoAtual ?>" selected> <?php $estadoAtual ?> </option>
+             <option value="<?php echo $estadoAtual ?>" selected> <?php echo $estadoAtual ?> </option>
              <?php
              /* quando ja salvo, e quiser mostrar, iniciar o select com valor atual */
              // get_user_meta( get_current_user_id(),  'estado', true)
              foreach ( $estados as $estado ) {
-               printf( '<option value=" %1$s "> %1$s </option>', $estado,$estado );
+               printf( '<option value="%1$s">%1$s</option>',$estado,$estado );
               }
               ?>
           </select>

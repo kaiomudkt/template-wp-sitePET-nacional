@@ -73,7 +73,7 @@
 
 <p class="meta-options hcf_field">
     <label for="estado">Estado (Unidade Federativa)</label>
-    <input id="estado" disabled
+    <input id="estado" readonly=“true”
     type="text"
     name="estado"
     value="<?php 
