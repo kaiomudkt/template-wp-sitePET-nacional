@@ -13,8 +13,10 @@ add_action('init', function() {
   function additional_profile_fields( $user ) {
 
     //$departments = get_terms(['taxonomy' => 'department', 'hide_empty' => false]);
-    $estados = ['tocantins', 'bahia', 'sergipe', 'pernambuco', 'alagoas', 'rio-grande-do-norte', 
-    'ceara', 'piaui', 'maranhao', 'amapa', 'para', 'roraima', 'amazonas', 'rondonia' ];
+    $estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 
+    'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
+    'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO',
+    'RR', 'SC', 'SP', 'SE', 'TO'];
 
 
 

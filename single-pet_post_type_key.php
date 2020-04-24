@@ -28,55 +28,25 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 <div class="wrap">
 	<div id="event-hero">
 	
-		<h2><?php the_title(); ?></h2>
-
+	<div class="jumbotron" style="padding: 10px 20px;background-color: #0000;">
+		<h2 class="display-4" style="color:#666666"><?php the_title(); ?> ~ <?php echo $instituicao_pertencente; ?></h2>
 		<?php if( $tutor): ?>
-		<div id="tutor" class="">
-			<div class="marke" data-lat="<?php echo $tutor['lat'];?>"> <?php echo $tutor; ?></div>
-		</div>
+			<h4 class="lead" id="tutor" style="color:#666666">Tutor: <?php echo $tutor; ?></h4>
+		<?php endif; ?>
+		<hr class="my-4">
+		<?php if( $qtd_integrantes ): ?>
+			<h5 style="color:#666666;font-size: 18px;">Quantidade de Membros: <?php echo $qtd_integrantes; ?> petianos</h5>
 		<?php endif; ?>
 
 		<?php if( $qtd_integrantes ): ?>
-		<div id="qtd_integrantes" class="">
-			<div class="marke" data-lat="<?php echo $qtd_integrantes['lat']; ?>"><?php echo $qtd_integrantes; ?></div>
-		</div>
+			<h5 style="color:#666666;font-size: 18px;"><?php echo $cidade; ?> - <?php echo $estado; ?></h5>
 		<?php endif; ?>
-
-		<?php if( $instituicao_pertencente ): ?>
-		<div id="instituicao_pertencente" class="">
-			<div class="marke" data-lat="<?php echo $instituicao_pertencente['lat']; ?>"><?php echo $instituicao_pertencente; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php if( $cursos_abrangentes ): ?>
-		<div id="cursos_abrangentes" class="">
-			<div class="marke" data-lat="<?php echo $cursos_abrangentes['lat']; ?>"><?php echo $cursos_abrangentes; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php if( $link_site ): ?>
-		<div id="link_site" class="">
-			<div class="marke" data-lat="<?php echo $link_site['lat']; ?>"><?php echo $link_site; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php if( $estado ): ?>
-		<div id="estado" class="">
-			<div class="marke" data-lat="<?php echo $estado['lat']; ?>"><?php echo $estado; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php if( $cidade ): ?>
-		<div id="cidade" class="">
-			<div class="marke" data-lat="<?php echo $cidade['lat']; ?>"><?php echo $cidade; ?></div>
-		</div>
-		<?php endif; ?>
-
-		<?php if( $campus ): ?>
-		<div id="campus" class="">
-			<div class="marke" data-lat="<?php echo $campus['lat']; ?>"><?php echo $cidade; ?></div>
-		</div>
-		<?php endif; ?>
+		<p class="lead">
+			<a class="btn btn-primary btn-lg" href="<?php echo $link_site; ?>" role="button" style="padding: 5px 10px;border-color: #1ccdca;">
+			Venha Conferir
+			</a>
+ 		</p>
+	</div>
 
 		<?php if( $thumbnail ): ?>
 			<img class="thumbnail" src="<?php echo $thumbnail['url']; ?>" alt="<?php echo $thumbnail['alt']; ?>" />
