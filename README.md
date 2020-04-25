@@ -18,6 +18,10 @@ _______________________________________
     PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2
     Curso: Sistemas de Informação FACOM/UFMS
     https://github.com/Vinny1892
+_______________________________________
+    Apoiadores: Lucas Sandim (https://github.com/SandimL)
+                Mateus Ragazzi (https://github.com/mateusragazzi)
+                Diego Bulhões (https://github.com/DiegoBulhoes)
 ______________________________________________________________________________________________________
 
 ### Este projeto possui 5 partes:
