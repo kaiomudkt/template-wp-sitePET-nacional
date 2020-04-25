@@ -23,7 +23,7 @@ h2{
 	font-family: cursive;
 }
 #mapa_pets_brasil{
-	background: #00a69b;
+	background: linear-gradient(to right, #00a69b , #002ba6);
 	overflow: hidden;
 	
 }

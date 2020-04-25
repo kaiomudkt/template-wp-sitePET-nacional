@@ -11,17 +11,11 @@ add_action('init', function() {
    * @param WP_User $user User object.
    */
   function additional_profile_fields( $user ) {
-
-    //$departments = get_terms(['taxonomy' => 'department', 'hide_empty' => false]);
     $estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 
     'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
     'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO',
     'RR', 'SC', 'SP', 'SE', 'TO'];
-
-
-
 ?>
-
       <table class="form-table">
        <tr>
          <th><label for="estado">Estado que gerencia</label></th>
