@@ -41,7 +41,7 @@ function pet_post_type() {
 		'labels'                => $labels,
 		//'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//'custom-fields' no momento q for add novo pet, parece a opção de fild customizado
 		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
-		//'taxonomies'            => array( 'category', 'post_tag' ),
+		'taxonomies'            => array( 'category'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
