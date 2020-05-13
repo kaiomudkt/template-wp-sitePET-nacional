@@ -16,27 +16,22 @@ ainda falta fazer o desinger, ou aproveitar o designer do "home-blog.php" do tem
 
 
 $arguments = array('method' => 'GET');
-/* esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP
-   esse parametro '?per_page=1' pede somente 1 poste,
-   acredito que seja o ultimo
-*/
+
 /**
  * adicionar a URL de cada site estadual nesse Array,
  * lembre de colocar nesse formato
  * 1º o dominio: http://meuDominio.com.br
- * depois concatena com: /wp-json/wp/v2/posts?per_page=1
- * ficando: http://meuDominio.com.br/wp-json/wp/v2/posts?per_page=1
  */
 $estados = [
-    'MS' => 'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'MT' => 'https://www.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'GO' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'RR' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'AM' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'AP' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'AC' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'RO' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
-    'MA' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'MS' => 'https://www.facom.ufms.br',
+    'MT' => 'https://www.ufms.br',
+    'GO' => 'https://br.wordpress.org',
+    'RR' => 'https://br.wordpress.org',
+    'AM' => 'https://br.wordpress.org',
+    'AP' => 'https://br.wordpress.org',
+    'AC' => 'https://br.wordpress.org',
+    'RO' => 'https://br.wordpress.org',
+    'MA' => 'https://br.wordpress.org',
 ];
 ?>
 
@@ -59,8 +54,11 @@ $estados = [
                                 <div class="blog_grid_con">
                                     <?php
 
-                                    // Faz a solicitação GET para o endereço.
-                                    $request = wp_remote_get( $url, $arguments);
+                                    /* Faz a solicitação GET para o endereço.
+                                     Esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP esse parametro '?per_page=1' pede somente 1 poste,
+                                       acredito que seja o ultimo
+                                    */
+                                    $request = wp_remote_get( $url."/wp-json/wp/v2/posts?per_page=1", $arguments);
                                     // Se não houve erro...
                                     if ( ! is_wp_error( $request ) ) {
                                         // pegamos o "corpo" da resposta recebida...
@@ -73,7 +71,9 @@ $estados = [
                                             echo '<ul>';
                                             foreach( $data as $rest_post ) {
                                                 echo '<li>';
-                                                    echo '<h5>'. $estado .'</h5>';
+                                                    echo '<a href="'.$url.'">' 
+                                                        .'<h5>'. $estado .'</h5>'.
+                                                    '</a>';
                                                     echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
                                                 echo '</li>';
                                             }
