@@ -72,3 +72,13 @@ h2{
 .negrito{
 	font-weight: 900;
 }
+
+.estouro{
+	overflow: scroll;
+	height: 350px;
+	width: 800px;
+}
+
+.centro{
+	
+}

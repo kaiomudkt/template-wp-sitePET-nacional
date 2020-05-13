@@ -27,10 +27,16 @@ $arguments = array('method' => 'GET');
  * depois concatena com: /wp-json/wp/v2/posts?per_page=1
  * ficando: http://meuDominio.com.br/wp-json/wp/v2/posts?per_page=1
  */
-$urls = [
-    'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'https://www.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1'
+$estados = [
+    'MS' => 'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1',
+    'MT' => 'https://www.ufms.br/wp-json/wp/v2/posts?per_page=1',
+    'GO' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'RR' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'AM' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'AP' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'AC' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'RO' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
+    'MA' => 'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1',
 ];
 ?>
 
@@ -43,15 +49,16 @@ $urls = [
                 </span>
             </h2>
         </div>
-        <div class="rows_container clearfix">
+        <div class="centro">
             <div class="hm_blog_grid">
-                <ul class="hm_filter_wrapper_con masonry ajax_posts">
+                <ul class="estouro">
                     <?php 
-                        foreach($urls as $url){
+                        foreach($estados as $estado => $url){
                             ?>
-                            <li class="filter_item_block animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
+                            <li class=" animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
                                 <div class="blog_grid_con">
                                     <?php
+
                                     // Faz a solicitação GET para o endereço.
                                     $request = wp_remote_get( $url, $arguments);
                                     // Se não houve erro...
@@ -66,6 +73,7 @@ $urls = [
                                             echo '<ul>';
                                             foreach( $data as $rest_post ) {
                                                 echo '<li>';
+                                                    echo '<h5>'. $estado .'</h5>';
                                                     echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
                                                 echo '</li>';
                                             }
