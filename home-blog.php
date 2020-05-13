@@ -16,21 +16,22 @@ ainda falta fazer o desinger, ou aproveitar o designer do "home-blog.php" do tem
 
 
 $arguments = array('method' => 'GET');
-/* esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP
-   esse parametro '?per_page=1' pede somente 1 poste,
-   acredito que seja o ultimo
-*/
+
 /**
  * adicionar a URL de cada site estadual nesse Array,
  * lembre de colocar nesse formato
  * 1º o dominio: http://meuDominio.com.br
- * depois concatena com: /wp-json/wp/v2/posts?per_page=1
- * ficando: http://meuDominio.com.br/wp-json/wp/v2/posts?per_page=1
  */
-$urls = [
-    'https://www.facom.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'https://www.ufms.br/wp-json/wp/v2/posts?per_page=1',
-    'https://br.wordpress.org/wp-json/wp/v2/posts?per_page=1'
+$estados = [
+    'MS' => 'https://www.facom.ufms.br',
+    'MT' => 'https://www.ufms.br',
+    'GO' => 'https://br.wordpress.org',
+    'RR' => 'https://br.wordpress.org',
+    'AM' => 'https://br.wordpress.org',
+    'AP' => 'https://br.wordpress.org',
+    'AC' => 'https://br.wordpress.org',
+    'RO' => 'https://br.wordpress.org',
+    'MA' => 'https://br.wordpress.org',
 ];
 ?>
 
@@ -43,17 +44,21 @@ $urls = [
                 </span>
             </h2>
         </div>
-        <div class="rows_container clearfix">
+        <div class="centro">
             <div class="hm_blog_grid">
-                <ul class="hm_filter_wrapper_con masonry ajax_posts">
+                <ul class="estouro">
                     <?php 
-                        foreach($urls as $url){
+                        foreach($estados as $estado => $url){
                             ?>
-                            <li class="filter_item_block animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
+                            <li class=" animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
                                 <div class="blog_grid_con">
                                     <?php
-                                    // Faz a solicitação GET para o endereço.
-                                    $request = wp_remote_get( $url, $arguments);
+
+                                    /* Faz a solicitação GET para o endereço.
+                                     Esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP esse parametro '?per_page=1' pede somente 1 poste,
+                                       acredito que seja o ultimo
+                                    */
+                                    $request = wp_remote_get( $url."/wp-json/wp/v2/posts?per_page=1", $arguments);
                                     // Se não houve erro...
                                     if ( ! is_wp_error( $request ) ) {
                                         // pegamos o "corpo" da resposta recebida...
@@ -66,6 +71,9 @@ $urls = [
                                             echo '<ul>';
                                             foreach( $data as $rest_post ) {
                                                 echo '<li>';
+                                                    echo '<a href="'.$url.'">' 
+                                                        .'<h5>'. $estado .'</h5>'.
+                                                    '</a>';
                                                     echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
                                                 echo '</li>';
                                             }
