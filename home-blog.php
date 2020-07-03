@@ -23,9 +23,9 @@ $arguments = array('method' => 'GET');
  * 1º o dominio: http://meuDominio.com.br
  */
 $estados = [
-    'MS' => 'https://www.facom.ufms.br',
+    'MS' => 'http://grupospet.ufms.br/',
     'MT' => 'https://www.ufms.br',
-    'GO' => 'https://br.wordpress.org',
+    'GO' => 'http://ms',
     'RR' => 'https://br.wordpress.org',
     'AM' => 'https://br.wordpress.org',
     'AP' => 'https://br.wordpress.org',
@@ -33,6 +33,7 @@ $estados = [
     'RO' => 'https://br.wordpress.org',
     'MA' => 'https://br.wordpress.org',
 ];
+
 ?>
 
 <section class="content_section bg_gray">
