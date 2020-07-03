@@ -25,7 +25,7 @@ $arguments = array('method' => 'GET');
 $estados = [
     'MS' => 'https://www.facom.ufms.br',
     'MT' => 'https://www.ufms.br',
-    'GO' => 'https://br.wordpress.org',
+    'GO' => 'http://172.16.28.3/',
     'RR' => 'https://br.wordpress.org',
     'AM' => 'https://br.wordpress.org',
     'AP' => 'https://br.wordpress.org',

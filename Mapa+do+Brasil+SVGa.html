@@ -14,15 +14,14 @@
             $('.estado').click(function (event) {
                 event.preventDefault(); // tira o evento padrao do click
                 var estado = $(this).attr('xlink:href').toUpperCase(); // pegar o valor do atributo xlink:href e deixar tudo maiusculo
-                console.log(estado);
                 $("#loading").show(); //icon 
                 //faz requisicao
                 $.ajax({
-                    url: 'http://localhost:8083/wp-json/api/pet?estado='+estado,
+                    /*colocar aqui link do site nacional*/
+                    url: 'http://172.16.28.2/wp-json/api/pet?estado='+estado,
                     type: "GET",
                     dataType: "json"
                 }).done(function (response) { //depois da requisicao
-                console.log(response);
                     $("#lista_pets.list-group").html("");//limpa lista
                     response.forEach(element => { //percorre array de objetos de "post do WP"
                         $("#lista_pets.list-group").append(//insere na 'ul' na '#lista_pets'
