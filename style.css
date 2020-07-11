@@ -82,3 +82,19 @@ h2{
 .centro{
 	
 }
+
+
+.imagem-thumbnail {
+    width: 190px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+}
+
+.caixa-flex{
+	display: flex;
+}
+
+.texto-centralizado{
+	text-align: center;
+}

@@ -27,11 +27,11 @@ $estados = [
     'MT' => 'https://www.ufms.br',
     'GO' => 'http://172.16.28.3/',
     'RR' => 'https://br.wordpress.org',
-    'AM' => 'https://br.wordpress.org',
+    /*'AM' => 'https://br.wordpress.org',
     'AP' => 'https://br.wordpress.org',
     'AC' => 'https://br.wordpress.org',
     'RO' => 'https://br.wordpress.org',
-    'MA' => 'https://br.wordpress.org',
+    'MA' => 'https://br.wordpress.org',*/
 ];
 ?>
 
@@ -58,7 +58,7 @@ $estados = [
                                      Esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP esse parametro '?per_page=1' pede somente 1 poste,
                                        acredito que seja o ultimo
                                     */
-                                    $request = wp_remote_get( $url."/wp-json/wp/v2/posts?per_page=1", $arguments);
+                                    $request = wp_remote_get( $url."/wp-json/wp/v2/posts?per_page=1&_embed", $arguments);
                                     // Se não houve erro...
                                     if ( ! is_wp_error( $request ) ) {
                                         // pegamos o "corpo" da resposta recebida...
@@ -70,11 +70,38 @@ $estados = [
                                         if ( ! is_wp_error( $data ) ) {
                                             echo '<ul>';
                                             foreach( $data as $rest_post ) {
+                                                $URLthumbnail = esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url);  
+
                                                 echo '<li>';
                                                     echo '<a href="'.$url.'">' 
                                                         .'<h5>'. $estado .'</h5>'.
                                                     '</a>';
                                                     echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
+                                                                                                      
+                                                    echo '<div class="caixa-flex">';
+
+                                                        if ($URLthumbnail) {
+                                                            echo "<div class=".'imagem-thumbnail  &quot; '."style=background-image:url($URLthumbnail)   &quot;></div>";
+                                                        }
+
+                                                        echo '<div>';
+                                                            echo '<p class=&quot;texto-centralizado&quot;>';
+                                                                //echo var_dump($rest_post);
+                                                                $descricao = $rest_post->content->rendered;
+                                                                    //echo strlen($descricao);
+
+                                                                if (strlen($descricao) > 300) {
+                                                                    //echo 'maior q 90';
+                                                                    echo substr($descricao, 0, 300);
+                                                                }else{
+                                                                    //echo 'menor q 90';
+                                                                    echo $descricao;
+                                                                }
+                                                                
+                                                                echo '<strong>[...]</strong>';
+                                                            echo '</p>';
+                                                        echo '</div>';
+                                                    echo '</div>';
                                                 echo '</li>';
                                             }
                                             echo '</ul>';
