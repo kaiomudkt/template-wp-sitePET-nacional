@@ -8,7 +8,7 @@ e as portagens personzalidas do C-P-T sao mostrada neste arquivo "single-pet_pos
 //https://www.advancedcustomfields.com/resources/adding-fields-posts/
 get_header();
 
-the_post();
+//the_post();
 
 
 // vars
@@ -41,11 +41,16 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 		<?php if( $qtd_integrantes ): ?>
 			<h5 style="color:#666666;font-size: 18px;"><?php echo $cidade; ?> - <?php echo $estado; ?></h5>
 		<?php endif; ?>
-		<p class="lead">
-			<a class="btn btn-primary btn-lg" href="<?php echo $link_site; ?>" role="button" style="padding: 5px 10px;border-color: #1ccdca;">
-			Venha Conferir
-			</a>
- 		</p>
+
+		<?php if( $link_site ): ?>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="<?php echo $link_site; ?>" role="button" style="padding: 5px 10px;border-color: #1ccdca;">
+				Venha Conferir
+				</a>
+	 		</p>
+		<?php endif; ?>
+
+
 	</div>
 
 		<?php if( $thumbnail ): ?>
@@ -60,10 +65,15 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 	
 	</div>
 	
+	<!--
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<?php the_content(); ?>
+	-->
+			<?php //the_content(); ?>
+	<!--
 		</main>
 	</div>
+	-->
+
 </div>
 <?php get_footer();?>

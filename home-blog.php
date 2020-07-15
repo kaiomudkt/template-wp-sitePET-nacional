@@ -23,9 +23,9 @@ $arguments = array('method' => 'GET');
  * 1º o dominio: http://meuDominio.com.br
  */
 $estados = [
-    'MS' => 'https://www.facom.ufms.br',
+    'MS' => 'http://172.16.28.3',
     'MT' => 'https://www.ufms.br',
-    'GO' => 'http://172.16.28.3/',
+    'GO' => 'https://www.facom.ufms.br',
     'RR' => 'https://br.wordpress.org',
     /*'AM' => 'https://br.wordpress.org',
     'AP' => 'https://br.wordpress.org',
@@ -34,6 +34,7 @@ $estados = [
     'MA' => 'https://br.wordpress.org',*/
 ];
 ?>
+
 
 <section class="content_section bg_gray">
     <div class="content row_spacer no_padding">
@@ -50,7 +51,7 @@ $estados = [
                     <?php 
                         foreach($estados as $estado => $url){
                             ?>
-                            <li class=" animated grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
+                            <li class=" grid-item" data-animation-delay="<?php echo 300 * $i; ?>" data-animation="rotateInUpLeft">
                                 <div class="blog_grid_con">
                                     <?php
 
@@ -72,11 +73,17 @@ $estados = [
                                             foreach( $data as $rest_post ) {
                                                 $URLthumbnail = esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url);  
 
-                                                echo '<li>';
-                                                    echo '<a href="'.$url.'">' 
-                                                        .'<h5>'. $estado .'</h5>'.
-                                                    '</a>';
-                                                    echo '<a href="' . esc_url( $rest_post->link ) . '">' . $rest_post->title->rendered . '</a>';
+                                                echo '<li style="margin: 0 auto;">';
+                                                    echo '<div class="caixa-flex"
+                                                        style="
+                                                            width: 40em;
+                                                            margin: 0 auto;
+                                                        ">';
+                                                        echo '<a href="'.$url.'">' 
+                                                            .'<h5 style="padding-right: 30px;">'. esc_attr($estado) .'</h5>'.
+                                                            '</a>';
+                                                        echo '<a href="' . esc_url( $rest_post->link ) . '">' . esc_attr($rest_post->title->rendered) . '</a>';
+                                                    echo "</div>";
                                                                                                       
                                                     echo '<div class="caixa-flex">';
 
@@ -84,10 +91,11 @@ $estados = [
                                                             echo "<div class=".'imagem-thumbnail  &quot; '."style=background-image:url($URLthumbnail)   &quot;></div>";
                                                         }
 
-                                                        echo '<div>';
-                                                            echo '<p class=&quot;texto-centralizado&quot;>';
+                                                        echo '<div style="width:40em;
+                                                                margin: 0 auto;">';
+                                                            //echo '<p class=&quot;texto-centralizado&quot;>';
                                                                 //echo var_dump($rest_post);
-                                                                $descricao = $rest_post->content->rendered;
+                                                                $descricao = esc_attr($rest_post->content->rendered);
                                                                     //echo strlen($descricao);
 
                                                                 if (strlen($descricao) > 300) {
@@ -106,13 +114,13 @@ $estados = [
                                             }
                                             echo '</ul>';
                                         }else{
-                                            echo 'erro: is_wp_error( $data)';
+                                            //echo 'erro: is_wp_error( $data)';
                                             // em produção tem que tirar o echo, para n mostrar pro usuario final se der erro
                                         }
                                     }else{
-                                        $error_msg = $request->get_error_message();
+                                        //$error_msg = $request->get_error_message();
                                             // em produção tem que tirar o echo, para n mostrar pro usuario final se der erro
-                                            echo "error: request = wp_remote_get(): $error_msg";
+                                            //echo "error: request = wp_remote_get(): $error_msg";
                                     }
                                     ?>
                                 </div>

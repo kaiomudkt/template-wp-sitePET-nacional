@@ -2,14 +2,10 @@
     /**
  * Register meta boxes.
  */
-/*
-TODO TO DO
-LEMBRA DE TIRAR ESSE 'HCF'
-*/
-function registrar_meta_boxes() {
-    add_meta_box( 'hcf-1', __( 'PET parametros', 'hcf' ), 'pet_display_callback', 'pet_post_type_key' );
+function registrar_meta_boxes_pet() {
+    add_meta_box( 'id_meta_box_pet', 'Dados do PET', 'pet_display_callback', 'pet_post_type_key', 'normal', 'high' );
 }
-add_action( 'add_meta_boxes', 'registrar_meta_boxes' );
+add_action( 'add_meta_boxes', 'registrar_meta_boxes_pet' );
 
 /**
  * Meta box display callback.
@@ -54,7 +50,7 @@ function salva_meta_box( $post_id ) {
             chave: valor */
             update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
         }else{
-            // echo 'não exite esse parameto' . $field;
+            // echo 'nao exite esse parameto' . $field;
         }
     }
 }
