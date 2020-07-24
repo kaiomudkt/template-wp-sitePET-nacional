@@ -1,175 +1,99 @@
 <?php
 //https://developer.wordpress.org/reference/functions/wp_add_dashboard_widget/
-//https://www.cssigniter.com/make-wordpress-dashboard-widget/
+//https://rudrastyh.com/wordpress/dashboard-widgets-with-options.html
 
 function registrar_url_estado_add_dashboard_widget(){
     wp_add_dashboard_widget(  
         'id_widget_url_estado',
         'URL de cada site estadual',
-        esc_html__('html_callback_url_estados'),
-        recupera_post_dashboard_widget_news_config_handler,
+        esc_html__('callback_lista_URLs_estados'),
+        esc_html__('callback_form_CRUD_URLs_estados'),
         $callback_args = null
     ); 
-
 }
 
 add_action( 'wp_dashboard_setup', 'registrar_url_estado_add_dashboard_widget' );
 
-function html_callback_url_estados($var){
-    // $options = get_option( 'MS' );
-    
-    // 
-    //     <div>    
-    //         <table style="width:100%">
-    //             <tr>
-    //                 <th>Estado</th>
-    //                 <th>URL</th>
-    //             </tr>
-    //             <tr>
-    //                 <td>MS</td>
-    //                 <td><input type="text" name="MS" value="<php echo esc_attr( $options['items'] ); ? "></td>
-    //             </tr>
-    //             <tr>
-    //                 <td>AM</td>
-    //                 <td><input type="text"></td>
-    //             </tr>
-                
-    //         </table>
-    //     </div>
-    // 
-    //__FILE__ = /var/www/html/wp-content/themes/template-wp-sitePET-nacional/url-estados-add-dashboard-widget.php
-    
-    // remove_action( 'welcome_panel', 'wp_welcome_panel' );
-    // // Remove all Dashboard widgets.
-    // global $wp_meta_boxes;
-    // unset( $wp_meta_boxes['dashboard'] );
- 
-    // // Add custom dashbboard widget.
-    // add_meta_box( 
-    //     'dashboard_widget_example',
-    //     __( 'Example Widget', 'example-text-domain' ),
-    //     __NAMESPACE__ . 'render_example_widget',
-    //     'dashboard',
-    //     'column3',  // $context: 'advanced', 'normal', 'side', 'column3', 'column4'
-    //     'high'     // $priority: 'high', 'core', 'default', 'low'
-    // );
-    // if ( array_key_exists( 'support-request-submitted', $_GET ) && true == $_GET[ 'support-request-submitted' ] ) {
-    //     $now = date( get_option( 'time_format' ) );
-    //     echo '<div class="updated inline"><p><strong>Support Request Submitted at '.$now.'</strong></p></div>';
-    // }
-    
-    // $current_user = wp_get_current_user();
-    
-    // // Exclude the user first and last name only if set.
-    // $name_from = '';
-    // if ( strlen( $current_user->user_firstname ) && strlen( $current_user->user_lastname ) ) {
-    //     $name_from = $current_user->user_firstname . ' ' . $current_user->user_lastname;
-    // }
-    
-    
-    
-    //add_meta_box( 'id', 'Dashboard Widget Title', 'dash_widget', 'dashboard', 'side', 'high' );
-
+function callback_lista_URLs_estados($var){
+    $estados = [
+        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA',
+        'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF',
+    ];
+    foreach ($estados as $estado) {
     ?>
-
-<form method="post" action="<?php echo get_template_directory_uri(); ?>dcwd-support-request.php">
-<p>If you are having problems with your site or need some changes made, please describe them below.</p>
-<p>A support request will be opened and Damien will respond.</p>
-<textarea name="support_issue" rows="10" cols="50" id="support_issue" class="large-text code"></textarea>
-<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Submit Support Request" /></p>
-<input type="hidden" name="support-request-nonce" value="<?php echo wp_create_nonce('support-request-nonce'); ?>" />
-<input type="hidden" name="email_from" value="<?php echo $current_user->user_email; ?>" />
-<?php if ( strlen( $name_from ) ) { ?>
-<input type="hidden" name="name_from" value="<?php echo $current_user->user_firstname, ' ', $current_user->user_lastname; ?>" />
-<?php } ?>
-</form>
-
-<php?
-}
-
-function render_example_widget() {
-    ?>
-        <p>Do something.</p>
+        <p class="meta-options campos">
+            <label for="estado"><?php echo $estado; ?></label>
+            <input 
+                id="<?php echo $estado; ?>"
+                Disabled
+                type="text"
+                name="<?php $estado ?>"
+                value="<?php echo esc_attr( get_option($estado) ); ?>"
+            >
+        </p>
     <?php
+    }
 }
-
-
-
-
-
-function recupera_post_dashboard_widget_news_config_handler() {
-	$options = get_option( 'MS' );
-
-	if ( isset( $_POST['submit'] ) ) {
-		if ( isset( $_POST['rss_items'] ) && intval( $_POST['rss_items'] ) > 0 ) {
-			$options['items'] = intval( $_POST['rss_items'] );
-		}
-
-		update_option( 'MS', 'http://172.16.28.2' );
-	}
-
-    ?>
-	<p>
-		<label><?php _e( 'Numberrr of RSS articles:', 'dw' ); ?>
-			<input type="text" name="rss_items" value="<?php echo esc_attr( $options['items'] ); ?>" />
-		</label>
-	</p>
-	<?php
-}
-
-add_action( 'admin_enqueue_scripts', 'dw_scripts' );
-function dw_scripts( $hook ) {
-	$screen = get_current_screen();
-	if ( 'dashboard' === $screen->id ) {
-		wp_enqueue_script( 'dw_script', plugin_dir_url( __FILE__ ) . 'path/to/script.js', array( 'jquery' ), '1.0', true );
-		wp_enqueue_style( 'dw_style', plugin_dir_url( __FILE__ ) . 'path/to/style.css', array(), '1.0' );
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
 
 //salvar dados do input digitado pelo usuario 
-function salva_url_estado_add_dashboard_widget( $post_id ) {
-    //if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-    if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-        $post_id = $parent_id;
-    }
-    if( !$widget_options = get_option( 'my_dashboard_widget_options' ) ){
-        $widget_options = array( );
-    }
+function callback_form_CRUD_URLs_estados( $post_id ) {
+    ?>
+    <p>
+        Faz a solicitação GET para o endereço.
+        Esse caminho '/wp-json/wp/v2/posts' acessa a API REST do WP esse parametro '?per_page=1' pede somente 1 poste.
+        Pode acontecer de dar problema com '/wp-json/wp/v2/posts', se der, use '?rest_route=/wp/v2/posts'
+        Coloque o endereço neste padrão: "https://www.ufms.br"        
+   </p>
+    <?php
     $estados = [
-        'MS',
-        'MT', 
-        'data_criacao', 
+        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA',
+        'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF',
     ];
+    foreach ($estados as $estado) {
+        if ( isset( $_POST['submit'] ) ) {
+            if ( isset($_POST[$estado]) ) {
+                update_option($estado, sanitize_text_field($_POST[$estado]) );
 
-    /*
-    'foreach percorre o vetor 'estados'
-    sendo que cada item do vetor é um parametro/field */
-    foreach ( $estados as $field ) {
-        if ( array_key_exists( $field, $_POST ) ) {/*existe esse elemento no na estrutura de dados (array) ? */
-            /* salva dados na tabela wp-options, 
-            'chave': 'valor' */
-            // Create an option to the database
-            add_option( $option, $value = '', $deprecated = '', $autoload = 'yes' );
-            //update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
-        }else{
-            // echo 'nao exite esse parameto' . $field;
+            }
         }
+        ?>
+        <p class="meta-options campos">
+            <label for="estado"><?php echo $estado; ?></label>
+            <input 
+                id="<?php echo $estado; ?>"
+                type="text"
+                name="<?php echo $estado ?>"
+                value="<?php echo esc_attr( get_option($estado) ); ?>"
+            >
+        </p>
+        <?php
     }
+
 }
 
-add_action( '', 'salva_url_estado_add_dashboard_widget' );
 
 
 
+
+
+
+function misha_process_my_dashboard_widget() {
+ 
+    // basic checks and save the widget settings here
+    if( 'POST' == $_SERVER['REQUEST_METHOD'] 
+     && isset( $_POST['my_custom_post'] ) ) {
+        update_option( 'custom_post', absint($_POST['my_custom_post']) );
+    }
+ 
+    echo '<h3>Select a page that will be displayed in this widget</h3>'
+    . wp_dropdown_pages( array(
+        'post_type' => 'page',
+        'selected' => get_option( 'custom_post' ),
+        'name' => 'my_custom_post',
+        'id' => 'my_custom_post',
+        'show_option_none' => '- Select -',
+        'echo' => false
+    ) );
+ 
+}
 ?>
