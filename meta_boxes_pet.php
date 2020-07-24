@@ -3,7 +3,14 @@
  * Register meta boxes.
  */
 function registrar_meta_boxes_pet() {
-    add_meta_box( 'id_meta_box_pet', 'Dados do PET', 'pet_display_callback', 'pet_post_type_key', 'normal', 'high' );
+    add_meta_box( 
+        'id_meta_box_pet',
+        'Dados do PET', 
+        'pet_display_callback', 
+        'pet_post_type_key', 
+        'normal', 
+        'high' 
+    );
 }
 add_action( 'add_meta_boxes', 'registrar_meta_boxes_pet' );
 
@@ -36,8 +43,8 @@ function salva_meta_box( $post_id ) {
         'link_site',
         'cidade',
         'campus',
-        'longitude',
         'estado',
+        'longitude',
         'latitude',
         'zoom'
     ];
@@ -55,3 +62,5 @@ function salva_meta_box( $post_id ) {
     }
 }
 add_action( 'save_post', 'salva_meta_box' );
+
+?>

@@ -35,6 +35,21 @@ $estados = [
 ];
 ?>
 
+<?php 
+
+function get_excerpt($limit, $description){
+    $excerpt = $description;
+    $excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+    $excerpt = strip_shortcodes($excerpt);
+    $excerpt = strip_tags($excerpt);
+    $excerpt = substr($excerpt, 0, $limit);
+    $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+    $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
+    return $excerpt;
+}
+
+?>
+
 
 <section class="content_section bg_gray">
     <div class="content row_spacer no_padding">
@@ -97,14 +112,14 @@ $estados = [
                                                                 //echo var_dump($rest_post);
                                                                 $descricao = esc_attr($rest_post->content->rendered);
                                                                     //echo strlen($descricao);
-
-                                                                if (strlen($descricao) > 300) {
+                                                                $descricao = get_excerpt(300,$descricao);
+                                                                //if (strlen($descricao) > 300) {
                                                                     //echo 'maior q 90';
-                                                                    echo substr($descricao, 0, 300);
-                                                                }else{
-                                                                    //echo 'menor q 90';
                                                                     echo $descricao;
-                                                                }
+                                                                //}else{
+                                                                    //echo 'menor q 90';
+                                                                    //echo $descricao;
+                                                                //}
                                                                 
                                                                 echo '<strong>[...]</strong>';
                                                             echo '</p>';

@@ -6,27 +6,27 @@
             grid-row-gap: 10px;
             grid-column-gap: 20px;
         }
-        .hcf_field{
+        .campos{
             display: contents;
         }
     </style>
 
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="tutor">Tutor</label>
     <input id="tutor"
     type="text"
     name="tutor"
     value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'tutor', true ) ); ?>">
 </p>
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="data_criacao">Data de criação do PET</label>
     <input id="data_criacao"
     type="date"
     name="data_criacao"
     value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'data_criacao', true ) ); ?>">
 </p>
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="qtd_integrantes">Quantidade de Integrantes Oficiais</label>
     <input id="qtd_integrantes"
     type="number"
@@ -34,7 +34,7 @@
     value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'qtd_integrantes', true ) ); ?>">
 </p>
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="instituicao_pertencente">Instituição que pertencente</label>
     <input id="instituicao_pertencente"
     type="text"
@@ -42,7 +42,7 @@
     value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'instituicao_pertencente', true ) ); ?>">
 </p>
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="link_site">Link do site</label>
     <input id="link_site"
     type="text"
@@ -53,7 +53,7 @@
 
 
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="cidade">Cidade</label>
     <input id="cidade"
     type="text"
@@ -61,7 +61,7 @@
     value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'cidade', true ) ); ?>">
 </p>
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="campus">Campus</label>
     <input id="campus"
     type="text"
@@ -71,7 +71,7 @@
 
 
 
-<p class="meta-options hcf_field">
+<p class="meta-options campos">
     <label for="estado">Estado (Unidade Federativa)</label>
     <input id="estado" readonly=“true”
     type="text"

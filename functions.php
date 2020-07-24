@@ -62,3 +62,11 @@ add_user_meta( int $user_id, string $meta_key, mixed $meta_value, bool $unique =
 */
 
 require_once($template_diretorio_filho . "/user-meta.php");
+
+//Registra um tamanho de imagem para a miniatura da postagem.
+set_post_thumbnail_size(1280, 720, true);
+
+//registrar wp_add_dashboard_widget das URLs dos estados(UF), local->"work area"
+require_once($template_diretorio_filho . "/url-estados-add-dashboard-widget.php");
+
+//
