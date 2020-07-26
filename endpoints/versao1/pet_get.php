@@ -21,7 +21,6 @@ function api_pet_get() {
 
 /* metodo que consulta no BD os PETs pertecentes ao um estado*/
 function consulta_pets($estado_selecionado){
-    $estado_ = 'MS';
     $query_pet = new WP_Query(array(
       //'posts_per_page' => 10, 
       //'author' =>  1,
