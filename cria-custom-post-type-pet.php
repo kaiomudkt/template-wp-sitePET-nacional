@@ -7,7 +7,7 @@
 function pet_post_type() {
 
 	$labels = array(
-		'name'                  => _x( 'pets', 'Post Type General Name', 'text_domain' ),
+		'name'                  => _x( 'Programa de Educação Tutorial', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'pet', 'Post Type Singular Name', 'text_domain' ),
 		'menu_name'             => __( 'Gerenciador PET', 'text_domain' ),
 		'name_admin_bar'        => __( 'Post Type', 'text_domain' ),
@@ -36,8 +36,8 @@ function pet_post_type() {
 		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
 	);
 	$args = array(
-		'label'                 => __( 'pet', 'text_domain' ),
-		'description'           => __( 'Tipo de post destinado somente para gerenciar grupo pet', 'text_domain' ),
+		'label'                 => __( 'PET', 'text_domain' ),
+		'description'           => __( 'Tipo PET, destinado categorizar PET.', 'text_domain' ),
 		'labels'                => $labels,
 		//'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//'custom-fields' no momento q for add novo pet, parece a opção de fild customizado
 		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
