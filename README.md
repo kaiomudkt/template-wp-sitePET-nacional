@@ -49,13 +49,13 @@ ________________________________________________________________________________
 7. e vá até o menu "aparencia > temas";
 8. ainda não conseguirar ativar o tema GruposPET;
 9. pois falta a dependencia do tema 'onepress'(tema pai);
-10. o próprio Wordpress pedirá para instalar o tema onepress;
+10. o próprio Wordpress pedirá para instalar o tema 'onepress';
 11. após feito isto, clique em "ativar" o tema GrupostPET;
 12. ainda logado como super admin, clique na aba do menu esquerdo do painel/dashboard, e preencha o campo de texto "URL de cade site estadual", para poder editar, é necessário estar logado como super admin e clicar no botão configuração localizado no canto superior da caixa "URL de cade site estadual" para que fique visivel o texto 'configurar' passa o mouse por cima dessa região da caixa, e preencha os campos com o link do seu respectivo estado, salve as mudanças no botão no final da caixa 'enviar';
-13. 
+13. agora crie as contas dos tutores que serão responsáveis por gerenciar os PETs do seu respectivo estado, para isso, quando o super admin for criar um novo usuário, deve preencher o campo 'estado', que será usado para representar o estado do Brasil que o novo usário trabalhará.
 ###### pronto =D
-14. se o próprio Wordpress não sugerir as instalação do tema onepress,
-    instale manualmente no mesmo diretório "themes/", do lado do tema "GruposPET"  
+14. se o próprio Wordpress não sugerir as instalação do tema 'onepress',
+    instale manualmente no mesmo diretório "themes/", do lado do tema "GruposPET".
 ______________________________________________________________________________________________________
 
 Para maiores detalhes, entre em contato com o PET Sistemas UFMS/FACOM Campo Grande.
