@@ -5,7 +5,6 @@
 // Register Custom Post Type
 //https://generatewp.com/post-type/
 function pet_post_type() {
-
 	$labels = array(
 		'name'                  => _x( 'Programa de Educação Tutorial', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'pet', 'Post Type Singular Name', 'text_domain' ),
@@ -35,20 +34,20 @@ function pet_post_type() {
 		'items_list_navigation' => __( 'Items list navigation', 'text_domain' ),
 		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
 	);
+
 	$args = array(
-		'label'                 => __( 'PET', 'text_domain' ),
+		'label'                 =>  array( 'name' => __( 'Portfolio' ),'singular_name' => __( 'Portfolio' )),
 		'description'           => __( 'Tipo PET, destinado categorizar PET.', 'text_domain' ),
 		'labels'                => $labels,
-		//'supports'              => array( 'title', 'thumbnail', 'excerpt', 'custom-fields','comments' ),//'custom-fields' no momento q for add novo pet, parece a opção de fild customizado
-		'supports'              => array( 'title', 'thumbnail', 'excerpt', 'comments' ),//exemplo de parametros
-		'taxonomies'            => array( 'category'),
+		'supports'              => array( 'editor', 'title', 'thumbnail', 'comments' , 'excerpt'),//exemplo de parametros
+		'taxonomies'            => array('category'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
 		'show_in_rest'			=> true,
 		'rest_base'          	=> 'Pets',
-		'menu_position'         => 5,
+		'menu_position'         => 2,
 		'show_in_rest'		 	=> true,
 		'rest_base'             => 'pets',
 		'show_in_admin_bar'     => true,
@@ -59,17 +58,14 @@ function pet_post_type() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
 		'menu_icon'				=> 'dashicons-groups',
-		'rewrite' => array('slug' => false, 'with_front' => false),
+		'rewrite' => array('slug' => 'programa_educacao_tutorial'),
 		'query_var' => true,
 	);
-	register_post_type( 'program_edu_tutorial', $args );//program_edu_tutorial é a chave identificadora do C-P-T PET
+	
+	register_post_type( 'program_edu_tutorial', $args );//program_edu_tutorial é a chave identificadora do Custom Post Type PET
 
 }
 add_action( 'init', 'pet_post_type');
-
-
-
-
 
 //esse metodo permite que o CPT-PET seja listado por categoria
 add_filter('pre_get_posts', 'query_post_type');
@@ -79,7 +75,7 @@ function query_post_type($query) {
     if($post_type)
         $post_type = $post_type;
     else
-        $post_type = array('nav_menu_item', 'post', 'program_edu_tutorial'); // don't forget nav_menu_item to allow menus to work!
+        $post_type = array('nav_menu_item', 'post', 'program_edu_tutorial');
     $query->set('post_type',$post_type);
     return $query;
     }
