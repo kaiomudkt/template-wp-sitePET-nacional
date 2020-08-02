@@ -40,23 +40,21 @@ ________________________________________________________________________________
 
 #### Para utilizar do template Brasil:
 
-1. Apos instalar o wordpress,
-2. baixe este tema chamado "GruposPET",
-3. coloque o diretorio "GruposPET" (este tema),
-4. dentro do diretorio de temas do wordpress, chamado de "themes"
-5. que esta localizado no seguinte caminho: "wp-content/themes/",
-apos realizar essa etapa,
-6. entre no painel de administrador do wordpress,
-7. com o link "http://seuDominio.com.br/wp-admin",
-8. entre em sua conta de admin,
-9. e vá até o menu "aparencia > temas".
-10. ainda não conseguirar ativar o tema GruposPET, 
-11. pois falta a dependencia do tema KYMA(tema pai),
-12. o próprio Wordpress pedirá para instalar o tema KYMA,
-após feito isto,
-13. clique em "ativar" o tema GrupostPET,
+1. Apos instalar o wordpress;
+2. baixe este tema chamado "GruposPET";
+3. coloque o diretorio "GruposPET" (este tema);
+4. dentro do diretorio de temas do wordpress, chamado de "themes" que esta localizado no seguinte caminho: "wp-content/themes/", apos realizar essa etapa, entre no painel de administrador do wordpress;
+5. com o link "http://seuDominio.com.br/wp-admin";
+6. entre em sua conta de admin;
+7. e vá até o menu "aparencia > temas";
+8. ainda não conseguirar ativar o tema GruposPET;
+9. pois falta a dependencia do tema 'onepress'(tema pai);
+10. o próprio Wordpress pedirá para instalar o tema onepress;
+11. após feito isto, clique em "ativar" o tema GrupostPET;
+12. ainda logado como super admin, clique na aba do menu esquerdo do painel/dashboard, e preencha o campo de texto "URL de cade site estadual", para poder editar, é necessário estar logado como super admin e clicar no botão configuração localizado no canto superior da caixa "URL de cade site estadual" para que fique visivel o texto 'configurar' passa o mouse por cima dessa região da caixa, e preencha os campos com o link do seu respectivo estado, salve as mudanças no botão no final da caixa 'enviar';
+13. 
 ###### pronto =D
-14. se o próprio Wordpress não sugerir as instalação do tema KYMA,
+14. se o próprio Wordpress não sugerir as instalação do tema onepress,
     instale manualmente no mesmo diretório "themes/", do lado do tema "GruposPET"  
 ______________________________________________________________________________________________________
 
