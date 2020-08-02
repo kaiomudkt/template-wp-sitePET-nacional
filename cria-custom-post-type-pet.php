@@ -11,7 +11,7 @@ function pet_post_type() {
 		'singular_name'         => _x( 'pet', 'Post Type Singular Name', 'text_domain' ),
 		'menu_name'             => __( 'Gerenciador PET', 'text_domain' ),
 		'name_admin_bar'        => __( 'Post Type', 'text_domain' ),
-		'archives'              => __( 'Item Archives', 'text_domain' ),
+		'archives'              => __( 'Lista PETs', 'text_domain' ),
 		'attributes'            => __( 'Item Attributes', 'text_domain' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'text_domain' ),
 		'all_items'             => __( 'Todos os PETs', 'text_domain' ),
@@ -62,7 +62,7 @@ function pet_post_type() {
 		'rewrite' => array('slug' => false, 'with_front' => false),
 		'query_var' => true,
 	);
-	register_post_type( 'pet_post_type_key', $args );//pet_post_type_key é a chave identificadora do C-P-T PET
+	register_post_type( 'program_edu_tutorial', $args );//program_edu_tutorial é a chave identificadora do C-P-T PET
 
 }
 add_action( 'init', 'pet_post_type');
@@ -71,29 +71,16 @@ add_action( 'init', 'pet_post_type');
 
 
 
-
-
-
-
-
-
-/*
-outro jeito de fazer o custom-post-type
-
-function registrar_cpt_pet() {
-  register_post_type('pet', array(
-    'label' => 'PET',
-    'description' => 'PET',
-    'public' => true,
-    'show_ui' => true,
-    'capability_type' => 'post',
-    'rewrite' => array('slug' => 'produto', 'with_front' => true),
-    'query_var' => true,
-    'supports' => array('custom-fields', 'author', 'title'),
-    'publicly_queryable' => true
-  ));
+//esse metodo permite que o CPT-PET seja listado por categoria
+add_filter('pre_get_posts', 'query_post_type');
+function query_post_type($query) {
+  if( is_category() ) {
+    $post_type = get_query_var('post_type');
+    if($post_type)
+        $post_type = $post_type;
+    else
+        $post_type = array('nav_menu_item', 'post', 'program_edu_tutorial'); // don't forget nav_menu_item to allow menus to work!
+    $query->set('post_type',$post_type);
+    return $query;
+    }
 }
-add_action('init', 'registrar_cpt_pet');
-
-
-*/

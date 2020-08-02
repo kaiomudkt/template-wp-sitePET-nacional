@@ -7,7 +7,7 @@ function registrar_meta_boxes_pet() {
         'id_meta_box_pet',
         'Dados do PET', 
         'pet_display_callback', 
-        'pet_post_type_key', 
+        'program_edu_tutorial', 
         'normal', 
         'high' 
     );
