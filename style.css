@@ -98,3 +98,7 @@ h2{
 .texto-centralizado{
 	text-align: center;
 }
+
+.fundo-cinza-claro{
+	background-color: yellow;
+}

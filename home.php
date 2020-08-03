@@ -132,8 +132,8 @@ $layout = onepress_get_layout();
 							<?php if ( ! is_wp_error( $data ) ) : ?>
 								
 								<?php foreach( $data as $rest_post ) : ?>
-									
 									<article id="post-<?php the_ID(); ?>" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
+										<h2><?php echo $estado; ?></h2>
 								 		
 								 		<div class=""><!-- nao sei pq, mas essa class esta quebrando a apresentação list-article-thumb -->
 								 			<?php echo '<a href="'.esc_url($rest_post->link).'">'; 

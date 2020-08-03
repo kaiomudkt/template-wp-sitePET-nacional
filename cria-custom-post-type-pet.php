@@ -36,7 +36,7 @@ function pet_post_type() {
 	);
 
 	$args = array(
-		'label'                 =>  array( 'name' => __( 'Portfolio' ),'singular_name' => __( 'Portfolio' )),
+		'label'                 =>  array( 'name' => __( 'PET' ),'singular_name' => __( 'PET' )),
 		'description'           => __( 'Tipo PET, destinado categorizar PET.', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'editor', 'title', 'thumbnail', 'comments' , 'excerpt'),//exemplo de parametros

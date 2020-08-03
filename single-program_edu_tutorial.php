@@ -12,7 +12,7 @@ $layout = onepress_get_layout();
  * @since 2.0.0
  * @see onepress_display_page_title
  */
-//do_action( 'onepress_page_before_content' );
+do_action( 'onepress_page_before_content' );
 
 
 // vars
@@ -46,7 +46,7 @@ echo "get_the_ID: ". get_the_ID();
 				            ?>
 				        </div><!-- .entry-footer -->
 				    <?php } ?>
-				    <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				    <?php //the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			        <?php if ( get_theme_mod( 'single_meta', 1 ) ) : ?>
 						<div class="entry-meta">
 				        	<p class="postmetadata"><?php the_tags('Tags: ', ', ', '<br />'); ?> Categorias: <?php the_category(', ') ?></p>
@@ -58,9 +58,14 @@ echo "get_the_ID: ". get_the_ID();
 			        <?php endif; ?>
 
 				</header><!-- .entry-header -->
-				
+
+				<?php if (has_excerpt()) : ?>
+					<h2>descrição: </h2>
+					<?php the_excerpt(); ?>
+				<?php endif; ?>
+
 				<?php if( $instituicao_pertencente) : ?>
-					<p><?php echo $instituicao_pertencente; ?></p>
+					<p>Instituição: <?php echo $instituicao_pertencente; ?></p>
 				<?php endif; ?>
 				
 				<?php if( $tutor): ?>
@@ -100,12 +105,21 @@ echo "get_the_ID: ". get_the_ID();
 
 				
 
-				<?php //var_dump(the_excerpt()); ?>
-				<?php if (the_excerpt()) : ?>
-					<p>descrição: 
-					<?php //the_excerpt(); ?>
-					</p>
-				<?php endif; ?>
+				
+
+				<h3>Sobre: </h3>
+				<?php while ( have_posts() ) : the_post(); ?>
+
+					<div class="entry-content">
+						<?php the_content(); ?>
+						<?php
+							wp_link_pages( array(
+								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'onepress' ),
+								'after'  => '</div>',
+							) );
+						?>
+					</div><!-- .entry-content -->
+				<?php endwhile; // End of the loop. ?>
 
 				<?php 
 				// If comments are open or we have at least one comment, load up the comment template.
