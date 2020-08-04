@@ -15,70 +15,28 @@ get_header();
 
 $layout = onepress_get_layout();
 
-/**
- * @since 2.0.0
- * @see onepress_display_page_title
- */
 ?>
 <?php onepress_breadcrumb(); ?>
-	<?php
-		/**/
-		$post_slug = 'slide-show';
-		$parametrosPost = array(
-		  'name'        => $post_slug,
-		  'post_type'   => 'post',
-		  'post_status' => 'publish',
-		  'numberposts' => 1
-		);
-	?>
+	
 <?php //exibi post que tem o ID do slide show  gerado pelo plugin  ?>
 <div id="content" class="site-content">
 	<div id="content-inside" class="container <?php echo esc_attr( $layout ); ?>">
+		<!-- carrossel -->
 		<div id="primary" class="content-area">
-			<main class="site-main" role="main">
-			<?php $instanciaPost = new WP_Query( $parametrosPost );
-			    while ( $instanciaPost->have_posts() ) : $instanciaPost->the_post(); ?>
-					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<div class="entry-content">
-							<?php the_content(); ?>
-						</div>
-					</article>
-			<?php endwhile;?>
-			</main>
-
+			<?php require_once($template_diretorio_filho . "/banner-carrossel.php");  ?>
+            <!-- fim carrossel -->
 			<!-- lista posts  API-->
 			<?php
-			/**
-			 * The template for displaying all pages.
-			 *
-			 * This is the template that displays all pages by default.
-			 * Please note that this is the WordPress construct of pages
-			 * and that other 'pages' on your WordPress site may use a
-			 * different template.
-			 *
-			 * @link https://codex.wordpress.org/Template_Hierarchy
-			 *
-			 * @package OnePress
-			 */
-			/**
-			 * @since 2.0.0
-			 * @see onepress_display_page_title
-			 */
-
 			//https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
 			function descricao_resumida( $text) {
 			    $raw_excerpt = $text;
-
 			    $text = strip_shortcodes( $text );
 			    $text = excerpt_remove_blocks( $text );
-
 			    /** This filter is documented in wp-includes/post-template.php */
 			    $text = apply_filters( 'the_content', $text );
 			    $text = str_replace( ']]>', ']]&gt;', $text );
-
 			    /* translators: Maximum number of words used in a post excerpt. */
 			    $excerpt_length = intval( _x( '55', 'excerpt_length' ) );
-
 			    /**
 			     * Filters the maximum number of words in a post excerpt.
 			     *
@@ -87,7 +45,6 @@ $layout = onepress_get_layout();
 			     * @param int $number The maximum number of words. Default 55.
 			     */
 			    $excerpt_length = (int) apply_filters( 'excerpt_length', $excerpt_length );
-
 			    /**
 			     * Filters the string in the "more" link displayed after a trimmed excerpt.
 			     *
@@ -97,7 +54,6 @@ $layout = onepress_get_layout();
 			     */
 			    $excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
 			    $text         = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-
 			    /**
 			     * Filters the trimmed excerpt string.
 			     *
@@ -109,13 +65,7 @@ $layout = onepress_get_layout();
 			    return $text;
 			}
 			?>
-			<style>
-				.blog{
-				    border-top: 1px solid #e9e9e9;
-					padding-top: 25px 0px;
-					padding: 25px 0px;
-				}
-			</style>
+		
 			<div class="post "><!-- list posts API -->
 				<?php $estados = [
                     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA',
@@ -150,9 +100,9 @@ $layout = onepress_get_layout();
 											<div class="list-article-meta">
 												<?php //the_category( ' / ' ); colocar a categoria ?>
 											</div>
-											<header class="entry-header">
+											<div class="entry-header">
 												<?php echo  '<h2 class="entry-title"><a href="'.$rest_post->link.'">'.$rest_post->title->rendered.'</a></h2>'; ?>
-											</header>
+											</div>
 											<div class="entry-excerpt">
 													<?php echo esc_attr(descricao_resumida($rest_post->content->rendered)); ?>
 											</div>
@@ -179,6 +129,7 @@ $layout = onepress_get_layout();
 			        <ul id="lista_pets" class="list-group" style="width: 110%;height: 50px;padding: 50px 130px;"></ul>
 			    </div>
 			</div><!-- end MAPA BRASIL -->
+
 		</div><!-- #primary -->
         <?php //if ( $layout != 'no-sidebar' ) { ?>
             <?php get_sidebar(); ?>

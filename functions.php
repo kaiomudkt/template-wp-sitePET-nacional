@@ -18,6 +18,16 @@ function carrega_estilos(){
 add_action('wp_enqueue_scripts' , 'carrega_estilos');
 
 /////////////////////////////////////////////////////////////////////////////////
+
+function carrega_scripts(){
+    wp_enqueue_style('style', get_template_directory_uri().'/assets/css/style.css', array(),'1.0','all');
+    wp_enqueue_style('boostrap','https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', array(),'','all');
+    wp_enqueue_script('main', get_template_directory_uri().'/assets/js/main.js', array(),null,true);
+    wp_enqueue_script('jquery','https://code.jquery.com/jquery-3.3.1.slim.min.js', array(),null,true);
+    wp_enqueue_script('popper','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', array(),null,true);
+    wp_enqueue_script('bootstrap','https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', array('jquery'),null,true);}
+
+add_action('wp_enqueue_scripts','carrega_scripts');
 /////////////////////////////////////////////////////////////////////////////////
 
 //se for de tema pai, carrega desse caminho o custom-post-type
@@ -28,7 +38,7 @@ add_action('wp_enqueue_scripts' , 'carrega_estilos');
 //caminho (/var/www/html/wp-content/themes/GruposPET)
 $template_diretorio_filho = get_stylesheet_directory();
 //echo $template_diretorio_filho;
-require_once($template_diretorio_filho . "/cria-custom-post-type-pet.php");
+require_once($template_diretorio_filho . "/cpt-pet.php");
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
@@ -69,4 +79,5 @@ set_post_thumbnail_size(1280, 720, true);
 //registrar wp_add_dashboard_widget das URLs dos estados(UF), local->"work area"
 require_once($template_diretorio_filho . "/url-estados-add-dashboard-widget.php");
 
-//
+// banner/ slide show / carrossel
+require_once($template_diretorio_filho . "/cpt-carrossel-banner.php"); 

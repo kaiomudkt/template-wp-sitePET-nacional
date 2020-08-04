@@ -27,7 +27,6 @@ $link_site = esc_attr( get_post_meta( get_the_ID(), 'link_site', true));
 $estado = esc_attr( get_post_meta( get_the_ID(), 'estado', true));
 $cidade = esc_attr( get_post_meta( get_the_ID(), 'cidade', true));
 $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
-echo "get_the_ID: ". get_the_ID();
 ?>
 
 <div id="content" class="site-content">

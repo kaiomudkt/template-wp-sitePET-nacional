@@ -102,3 +102,10 @@ h2{
 .fundo-cinza-claro{
 	background-color: yellow;
 }
+
+/*nao sei se precisa*/
+.blog{
+				    border-top: 1px solid #e9e9e9;
+					padding-top: 25px 0px;
+					padding: 25px 0px;
+				}
