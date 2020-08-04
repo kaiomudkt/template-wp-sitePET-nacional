@@ -12,7 +12,7 @@
  */
 
 get_header();
-
+//wp_head();
 $layout = onepress_get_layout();
 
 ?>
@@ -85,7 +85,7 @@ $layout = onepress_get_layout();
 									<article id="post-<?php the_ID(); ?>" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
 										<h2><?php echo $estado; ?></h2>
 								 		
-								 		<div class=""><!-- nao sei pq, mas essa class esta quebrando a apresentação list-article-thumb -->
+								 		<div class="list-article-thumb"><!-- nao sei pq, mas essa class esta quebrando a apresentação list-article-thumb -->
 								 			<?php echo '<a href="'.esc_url($rest_post->link).'">'; 
 													if ( isset($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) ) {
 														echo '<img class="attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="' . esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) . '" >';
@@ -136,4 +136,5 @@ $layout = onepress_get_layout();
         <?php //} ?>
 	</div><!--#content-inside -->
 </div><!-- #content -->
+<?php //wp_footer(); ?>
 <?php get_footer(); ?>

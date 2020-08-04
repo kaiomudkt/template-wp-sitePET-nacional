@@ -19,6 +19,9 @@ quando o tema pai for atualizado, somente as mundacas feitas no tema pai serao p
 e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
 */
 
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
+
+
 h2{
 	font-family: cursive;
 }

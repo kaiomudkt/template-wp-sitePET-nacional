@@ -21,7 +21,4 @@ function create_post_type() {
 //Iniciar o tipo de post
 add_action('init', 'create_post_type');
 
-
-
 ?>
-
