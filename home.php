@@ -125,9 +125,12 @@ $layout = onepress_get_layout();
 			        </div>
 
 			    </div> 
+			    <!--
 			    <div>
-			        <ul id="lista_pets" class="list-group" style="width: 110%;height: 50px;padding: 50px 130px;"></ul>
+			    
+			         <ul id="lista_pets" class="list-group" style="width: 110%;height: 50px;padding: 50px 130px;"></ul>
 			    </div>
+			        -->
 			</div><!-- end MAPA BRASIL -->
 
 		</div><!-- #primary -->

@@ -1,10 +1,5 @@
 ﻿<!-- saved from url=(0147)http://10.30.5.72mapa-do-brasil-svg.html -->
-<html lang="pt-br">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -25,13 +20,15 @@
                     $("#lista_pets.list-group").html("");//limpa lista
                     response.forEach(element => { //percorre array de objetos de "post do WP"
                         $("#lista_pets.list-group").append(//insere na 'ul' na '#lista_pets'
-                            `<li class="list-group-item" style="">  
-                                <a href="${element.guid}">${element.post_title}</a>
-                            </li>`
+                            `<a href="${element.guid}">
+                                <li class="container btn btn-outline-secondary ">  
+                                    ${element.post_title}
+                                </li>
+                            </a>`
                         );
                     }
                     );
-                    $('html,body').animate({ scrollTop: $("#lista_pets.list-group").offset().top - 30 }, 'slow');
+                    //$('html,body').animate({ scrollTop: $("#lista_pets.list-group").offset().top - 30 }, 'slow');
                     $("#loading").hide();
                 });
                 return false;
@@ -87,9 +84,7 @@
             cursor: pointer
         }
     </style>
-</head>
 
-<body>
     <div class="">
         <div>
 
@@ -460,15 +455,13 @@
         <div id="loading" style="display: none;">
             <h4><i class="icon-spinner icon-spin icon-large"></i> Aguarde, carregando...</h4>
         </div>
-        <!-- <div>
-            <ul id="lista_pets" class="list-group" style="float:right;">
+        <div id="div_lista_pets" class="overflow-auto">
+            <ul id="lista_pets" class="list-group" >
             </ul>
-        </div> -->
+        </div> 
         <div class="accordion" id="accordion2"></div>
     </div>
 
 
 
-</body>
 
-</html>
