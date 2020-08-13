@@ -55,7 +55,7 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 				        	<p><?php edit_post_link('Edit'); ?></p>
 						</div><!-- .entry-meta -->
 			        <?php endif; ?>
-
+			        
 				</header><!-- .entry-header -->
 
 				<?php if (has_excerpt()) : ?>

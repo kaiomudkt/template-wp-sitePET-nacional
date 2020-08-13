@@ -19,8 +19,7 @@ quando o tema pai for atualizado, somente as mundacas feitas no tema pai serao p
 e as mundacas feitas no tema filho "GruposPET" nao sera perdida.
 */
 
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
-
+/*
 
 h2{
 	font-family: cursive;
@@ -32,7 +31,6 @@ h2{
 }
 
 #mapa_brasil{
-	/*background-color: red;*/
 	padding: 20px;
 	float: left;
 	width: 500px;
@@ -45,7 +43,7 @@ h2{
 	margin-right: 300px;
 	background-color: red;
 	float: right;
-	overflow: auto;/*configurar melhor esse scroll*/
+	overflow: auto;
 	box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 	height: 20px;
 }
@@ -106,9 +104,27 @@ h2{
 	background-color: yellow;
 }
 
-/*nao sei se precisa*/
 .blog{
-				    border-top: 1px solid #e9e9e9;
-					padding-top: 25px 0px;
-					padding: 25px 0px;
-				}
+    border-top: 1px solid #e9e9e9;
+	padding-top: 25px 0px;
+	padding: 25px 0px;
+}
+*/
+
+
+.fonteIcon{
+	width: 40px !important;
+    height: 40px !important;
+}
+
+.tamanho-img{
+	width: 300px;
+	height: 150px;
+    object-fit: cover;
+}
+
+.tamanho-carrossel{
+	width: 650px;
+	height: 400px;
+    object-fit: cover;
+}

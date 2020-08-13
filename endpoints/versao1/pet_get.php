@@ -17,11 +17,14 @@ function api_pet_get() {
   $estado = $_GET["estado"]; 
   $response = consulta_pets($estado);
   return $response;
+  //return json_encode($response);  
 }
 
 /* metodo que consulta no BD os PETs pertecentes ao um estado*/
 function consulta_pets($estado_selecionado){
-  $query_pet = new WP_Query(array(
+  //https://www.billerickson.net/code/wp_query-arguments/
+  $query_pet = new WP_Query(
+    [
     //'posts_per_page' => 10, 
     //'author' =>  1,
     //'meta_compare' => 'not like'
@@ -29,8 +32,8 @@ function consulta_pets($estado_selecionado){
       'post_type' => 'program_edu_tutorial', 
       'meta_key' => 'estado',
       'meta_value' => $estado_selecionado
-  ));
-  $cpt_pet = $query_pet->get_posts(); //pega só os POSTs da query
-  return $cpt_pet;
+    ]
+  );
+  return $query_pet->get_posts(); //pega só os POSTs da query
 }
 ?>

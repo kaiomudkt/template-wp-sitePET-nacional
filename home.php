@@ -21,10 +21,8 @@ $layout = onepress_get_layout();
 <?php //exibi post que tem o ID do slide show  gerado pelo plugin  ?>
 <div id="content" class="site-content">
 	<div id="content-inside" class="container <?php echo esc_attr( $layout ); ?>">
-		<!-- carrossel -->
 		<div id="primary" class="content-area">
-			<?php require_once($template_diretorio_filho . "/banner-carrossel.php");  ?>
-            <!-- fim carrossel -->
+			<?php require_once(get_stylesheet_directory() . "/banner-carrossel.php");  ?>
 			<!-- lista posts  API-->
 			<?php
 			//https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
@@ -88,7 +86,7 @@ $layout = onepress_get_layout();
 								 		<div class="list-article-thumb"><!-- nao sei pq, mas essa class esta quebrando a apresentação list-article-thumb -->
 								 			<?php echo '<a href="'.esc_url($rest_post->link).'">'; 
 													if ( isset($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) ) {
-														echo '<img class="attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="' . esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) . '" >';
+														echo '<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="' . esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) . '" >';
 														//the_post_thumbnail( 'onepress-blog-small' );
 													} else {
 														echo '<img alt="" src="' . get_template_directory_uri() . '/assets/images/placholder2.png' . '">';
