@@ -16,7 +16,7 @@ do_action( 'onepress_page_before_content' );
 
 
 // vars
-$location = esc_attr( get_post_meta( get_the_ID(), 'location', true));
+$localizacao = esc_attr( get_post_meta( get_the_ID(), 'localizacao', true));
 $thumbnail = esc_attr( get_post_meta( get_the_ID(), 'thumbnail', true));
 $tutor = esc_attr( get_post_meta( get_the_ID(), 'tutor', true));
 $qtd_integrantes = esc_attr( get_post_meta( get_the_ID(), 'qtd_integrantes', true));
@@ -96,16 +96,6 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 			 		</p>
 				<?php endif; ?>
 
-				<?php if( $location ): ?>
-					<div id="event-map" class="">
-						<div class="" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
-					</div>
-				<?php endif; ?>
-
-				
-
-				
-
 				<h3>Sobre: </h3>
 				<?php while ( have_posts() ) : the_post(); ?>
 
@@ -126,6 +116,12 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 						comments_template();
 					endif;
 				 ?>
+
+				<?php 
+				if ($localizacao) {
+					echo '<iframe src="$localizacao"></iframe>';
+				}
+				?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
 

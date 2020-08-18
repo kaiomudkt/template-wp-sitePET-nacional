@@ -4,7 +4,10 @@ https://github.com/kaiomudkt/template-wp-sitePET-nacional
 # GruposPET 
 Esse projeto atende à demanda de divulgação de atividades do Programa de Educação Tutorial (PET), com o uso do Content Management System (CMS) Wordpress.
 Por meio do API REST do Wordpress faz a republicação das postagens de cada instalação do Wordpress (site estaduais) para outra instalação do Wordpress (site nacional, o qual estamos agora).
-______________________________________________________________________________________________________
+
+o site Nacional vai conter um Custom Post Type do Wordpress que representa um PET, onde cada usuário do site Nacional receberá uma conta que está vinculada a um estado do Brasil, e cada usuário será responsável por criar e manter atualizado todos os PETs de seu estado, para cada estado será possível criar diversos usuários para dividir a responsábilidade.  
+______________________________________________________________________________________________
+________
 ### Criado por:
     Kaio Mitsuharu Lino Aida
     PETIANO VOLUNTÁRIO DESDE 2018/2 ATÉ 2020/2

@@ -46,7 +46,8 @@ function salva_meta_box( $post_id ) {
         'estado',
         'longitude',
         'latitude',
-        'zoom'
+        'zoom',
+        'localizacao'
     ];
     /*
     'foreach percorre o vetor 'fields_pet'

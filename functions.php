@@ -70,3 +70,7 @@ require_once($template_diretorio_filho . "/url-estados-add-dashboard-widget.php"
 
 // banner/ slide show / carrossel
 require_once($template_diretorio_filho . "/cpt-carrossel-banner.php"); 
+
+// remove 'role'/'niveis de acesso' que não estão sendo usado, para diminuir a chance de dar problema
+require_once($template_diretorio_filho . "/remove_role.php"); 
+
