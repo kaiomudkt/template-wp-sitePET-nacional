@@ -1,11 +1,16 @@
 <?php
-function registrar_api_pet_get() {/*registra rota da API para ser acessana na URL*/
-  register_rest_route('api', '/pet', array(/*http://dominioMeuWordPress/wp-json/api/pet*/
+/*
+  registra rota da API para ser acessana na URL
+  methods: GET
+*/
+function registrar_api_pet_get() {
+  register_rest_route('api', '/pet',
     array(
-      'methods' => WP_REST_Server::READABLE,/*GET*/
-      'callback' => 'api_pet_get',/*chama o metodo*/
-    ),
-  ));
+      'methods' => WP_REST_Server::READABLE,
+      'callback' => 'api_pet_get',
+      'permission_callback' => '__return_true'
+    )
+  );
 }
 add_action('rest_api_init', 'registrar_api_pet_get');
 
@@ -20,15 +25,13 @@ function api_pet_get() {
   //return json_encode($response);  
 }
 
-/* metodo que consulta no BD os PETs pertecentes ao um estado*/
+/* 
+  metodo que consulta no BD os PETs pertecentes ao um estado
+  https://www.billerickson.net/code/wp_query-arguments/
+*/
 function consulta_pets($estado_selecionado){
-  //https://www.billerickson.net/code/wp_query-arguments/
   $query_pet = new WP_Query(
     [
-    //'posts_per_page' => 10, 
-    //'author' =>  1,
-    //'meta_compare' => 'not like'
-    //'paged' => $currentPage,
       'post_type' => 'program_edu_tutorial', 
       'meta_key' => 'estado',
       'meta_value' => $estado_selecionado

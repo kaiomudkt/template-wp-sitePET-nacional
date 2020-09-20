@@ -13,7 +13,7 @@
                 //faz requisicao
                 $.ajax({
                     /*colocar aqui link do site nacional*/
-                    url: 'http://172.16.28.2/wp-json/api/pet?estado='+estado,
+                    url: 'http://localhost:8089/wp-json/api/pet?estado='+estado,
                     type: "GET",
                     dataType: "json"
                 }).done(function (response) { //depois da requisicao

@@ -36,6 +36,9 @@ require_once($template_diretorio_filho . "/cpt-pet.php");
 //api rest wp filtrando por metadata fields, TO DO , terminar de implementando
 require_once($template_diretorio_filho . "/endpoints/versao1/pet_get.php");
 
+//
+require_once($template_diretorio_filho . "/endpoints/versao1/get_links_estados.php");
+
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////

@@ -113,6 +113,55 @@ $layout = onepress_get_layout();
 				 <?php endforeach;?>
 			</div><!-- end post -->
 
+			<div>
+				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+				<script>
+					jQuery(document).ready(function() {
+						jQuery.ajax({
+							url: 'http://localhost:8089/wp-json/api/links_estados',
+							type: 'GET',
+							dataType: 'JSON',
+							success: function(response_url) {
+								if (response_url == '401'  ){
+									console.log('Requisição inválida')
+								}else {
+									var estados = response_url;
+									estados.forEach(
+										function(key, value){
+											jQuery.ajax({
+												url: value+'/wp-json/wp/v2/posts?per_page=1&_embed',
+												type: 'GET',
+												dataType: 'JSON',
+												success: function(response) {
+													if (response == '401'  ){
+														console.log('Requisição inválida')
+													}else {
+														console.log(response)
+													}
+												}
+											});
+										}
+									);
+								}
+							}
+						});
+					});
+				</script>
+			</div>
+
+			<div>
+				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+				<script>
+					axios.get('http://localhost:8089/wp-json/api/links_estados', {})
+				        .then(response => {
+				            console.log(response)
+				        })
+				        .catch(error => {
+				            console.log(error)
+				        })
+				</script>
+			</div>
+
 			<!-- MAPA BRASIL -->
 			<div id="mapa_pets_brasil" class=" post list-article clearfix">
 			    <div style="">
