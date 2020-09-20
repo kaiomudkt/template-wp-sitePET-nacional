@@ -64,101 +64,43 @@ $layout = onepress_get_layout();
 			}
 			?>
 		
-			<div class="post "><!-- list posts API -->
-				<?php $estados = [
-                    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA',
-                    'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF',
-                ]; ?>
-				<?php foreach($estados as $estado) : ?>
-					<?php $url = esc_url(get_option($estado)); ?>
-					<?php if ($url) : ?>
-						<?php $arguments = array('method' => 'GET'); ?>
-						<?php $request = wp_remote_get( $url."/wp-json/wp/v2/posts?per_page=1&_embed", $arguments); ?>
-						<?php if ( ! is_wp_error( $request ) ) : ?>
-							<?php $body = wp_remote_retrieve_body( $request ); ?>
-							<?php $data = json_decode( $body ); ?>
-							<?php if ( ! is_wp_error( $data ) ) : ?>
-								
-								<?php foreach( $data as $rest_post ) : ?>
-									<article id="post-<?php the_ID(); ?>" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
-										<h2><?php echo $estado; ?></h2>
-								 		
-								 		<div class="list-article-thumb"><!-- nao sei pq, mas essa class esta quebrando a apresentação list-article-thumb -->
-								 			<?php echo '<a href="'.esc_url($rest_post->link).'">'; 
-													if ( isset($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) ) {
-														echo '<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="' . esc_url($rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url) . '" >';
-														//the_post_thumbnail( 'onepress-blog-small' );
-													} else {
-														echo '<img alt="" src="' . get_template_directory_uri() . '/assets/images/placholder2.png' . '">';
-													}
-											?></a>
-										</div>
-
-										<div class="list-article-content">
-											<div class="list-article-meta">
-												<?php //the_category( ' / ' ); colocar a categoria ?>
-											</div>
-											<div class="entry-header">
-												<?php echo  '<h2 class="entry-title"><a href="'.$rest_post->link.'">'.$rest_post->title->rendered.'</a></h2>'; ?>
-											</div>
-											<div class="entry-excerpt">
-													<?php echo esc_attr(descricao_resumida($rest_post->content->rendered)); ?>
-											</div>
-										</div>
-									</article>	
-								<?php endforeach; ?>
-							<?php endif; ?>
-						<?php endif; ?>
-					<?php endif; ?>
-				 <?php endforeach;?>
-			</div><!-- end post -->
-
-			<div>
-				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-				<script>
-					jQuery(document).ready(function() {
-						jQuery.ajax({
-							url: 'http://localhost:8089/wp-json/api/links_estados',
-							type: 'GET',
-							dataType: 'JSON',
-							success: function(response_url) {
-								if (response_url == '401'  ){
-									console.log('Requisição inválida')
-								}else {
-									var estados = response_url;
-									estados.forEach(
-										function(key, value){
-											jQuery.ajax({
-												url: value+'/wp-json/wp/v2/posts?per_page=1&_embed',
-												type: 'GET',
-												dataType: 'JSON',
-												success: function(response) {
-													if (response == '401'  ){
-														console.log('Requisição inválida')
-													}else {
-														console.log(response)
-													}
-												}
-											});
-										}
-									);
-								}
-							}
-						});
-					});
-				</script>
-			</div>
+			<div id="divListPosts"></div>
+			
 
 			<div>
 				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 				<script>
-					axios.get('http://localhost:8089/wp-json/api/links_estados', {})
+					/* busca na api do site nacional o link de todos os sites estaduais*/
+					axios.get('http://localhost:8089/wp-json/api/links_estados')
 				        .then(response => {
-				            console.log(response)
-				        })
-				        .catch(error => {
+				            var links_estados = response.data
+				            Object.entries(links_estados).forEach(
+				            	([estado, link]) => {
+				            		//console.log(estado +' - '+link)
+				            		var post = busca_ultima_postagem(link)
+				            		exibe_postagem(post)
+				            	}
+				            )
+				        }).catch(error => {
+				            console.log(error)
+				        });
+			        /* metodo assincrono que faz requisicao da ultima postagem */
+			        function busca_ultima_postagem(link) {
+			        	axios.get(link + "/wp-json/wp/v2/posts?per_page=1&_embed")
+				        	.then(response => {
+			        			console.log(response.data[0])
+			        			return response.data[0]
+			        		}).catch(error => {
 				            console.log(error)
 				        })
+						return null
+					}
+					/* exibe postagem */
+					function exibe_postagem(post){
+						console.log(post)
+						var divListPosts = document.getElementById('divListPosts')
+						divListPosts.innerHTML += "<div>"+"teste"+"</div>"
+					}
 				</script>
 			</div>
 
@@ -170,14 +112,7 @@ $layout = onepress_get_layout();
 			                include('Mapa+do+Brasil+SVGa.html');
 			            ?>
 			        </div>
-
 			    </div> 
-			    <!--
-			    <div>
-			    
-			         <ul id="lista_pets" class="list-group" style="width: 110%;height: 50px;padding: 50px 130px;"></ul>
-			    </div>
-			        -->
 			</div><!-- end MAPA BRASIL -->
 
 		</div><!-- #primary -->
