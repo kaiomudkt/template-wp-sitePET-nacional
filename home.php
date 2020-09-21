@@ -61,7 +61,7 @@ $layout = onepress_get_layout();
 						<article id="article_conteudo" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
 							<h2>${estado}</h2>
 							<div class="list-article-thumb">
-								<a href="${post.link}>
+								<a href="${post.link}">
 									${returna_img(post._embedded['wp:featuredmedia'][0].source_url, link_nacional)}
 								</a>
 							</div>
