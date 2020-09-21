@@ -119,7 +119,7 @@ $campus = esc_attr( get_post_meta( get_the_ID(), 'campus', true));
 
 				<?php 
 				if ($localizacao) {
-					echo '<iframe src="$localizacao"></iframe>';
+					//echo '<iframe src="$localizacao"></iframe>';
 				}
 				?>
 			</main><!-- #main -->
