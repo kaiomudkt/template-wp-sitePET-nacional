@@ -39,10 +39,13 @@ $layout = onepress_get_layout();
 	                        const link_nacional = links_estados['link_nacional']
 	                        Object.entries(links_estados).forEach(
 	                        	async ([estado, link]) => {
-	                        		//console.log(estado+' '+link)
 	                        		if (estado != 'link_nacional') {
 	                        			const post = await busca_ultima_postagem(link)
-	                        			exibe_postagem(estado, post.data[0], link_nacional)
+	                        			if (post) {
+	                        				exibe_postagem(estado, post.data[0], link_nacional)
+	                        			}else{
+	                        				console.log(post)
+	                        			}
 	                        		}
 	                    		}
 	                		)
@@ -52,7 +55,13 @@ $layout = onepress_get_layout();
                     }
                     /* metodo assincrono que faz requisicao da ultima postagem */
                     async function busca_ultima_postagem(link) {
-                        return await axios.get(link + "/wp-json/wp/v2/posts?per_page=1&_embed")
+                        try{
+                        	return await axios.get(link + "/wp-json/wp/v2/posts?per_page=1&_embed")
+                        }catch (e){
+                        	console.log(e)
+                        	return null
+                        }
+                        
                     }
 					/* exibe postagem */
 					function exibe_postagem(estado, post, link_nacional){
@@ -62,7 +71,7 @@ $layout = onepress_get_layout();
 							<h2>${estado}</h2>
 							<div class="list-article-thumb">
 								<a href="${post.link}">
-									${returna_img(post._embedded['wp:featuredmedia'][0].source_url, link_nacional)}
+									${returna_img(post, link_nacional)}
 								</a>
 							</div>
 							<div class="list-article-content">
@@ -86,11 +95,13 @@ $layout = onepress_get_layout();
 
 					/* retorna img */
 					//$rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url
-					function returna_img(link, link_nacional){
-						return (link) ? 
-							`<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link}">` 
-							:
-							`<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link_nacional}/sem_imagem.jpg">`
+					function returna_img(post, link_nacional){
+						if (post._embedded['wp:featuredmedia']){
+							const link = post._embedded['wp:featuredmedia'][0].source_url
+							return `<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link}">` 
+						}else{
+							return `<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link_nacional}/wp-content/themes/wp-template-child-sitePET-nacional/sem_imagem.png">`
+						}
 					}
 				</script>
 			</div>
