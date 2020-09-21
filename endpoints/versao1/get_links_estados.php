@@ -24,7 +24,7 @@ function api_links_estados_get() {
 	https://www.billerickson.net/code/wp_query-arguments/
 */
 function consulta_links_estadoss(){
-	$estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA', 'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
+	$estados = ['link_nacional', 'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA', 'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
     $urls = [];
 	foreach($estados as $estado){
 		$url = esc_url(get_option($estado));

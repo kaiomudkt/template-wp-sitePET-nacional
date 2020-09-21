@@ -39,6 +39,7 @@ function callback_lista_URLs_estados(){
                 value="<?php echo esc_attr( get_option($estado) ); ?>"
             >
         </p>
+
     <?php
     }
 }
@@ -52,11 +53,16 @@ function callback_form_CRUD_URLs_estados() {
         Pode acontecer de dar problema com '/wp-json/wp/v2/posts', se der, use '?rest_route=/wp/v2/posts'
         <br>Coloque o endereço neste padrão: "https://www.ufms.br"        
    </p>
+
+   <input 
+        id="link_nacional"
+        name="link_nacional" 
+        type="hidden" 
+        value="<?php echo esc_attr( get_option('link_nacional') ); ?>"
+    >
     <?php
     $estados = [
-        'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA',
-        'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF',
-    ];
+        'link_nacional', 'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG','PA', 'PB', 'PR','PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
     foreach ($estados as $estado) {
         if ( isset( $_POST['submit'] ) ) {
             if ( isset($_POST[$estado]) ) {

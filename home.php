@@ -24,82 +24,73 @@ $layout = onepress_get_layout();
 		<div id="primary" class="content-area">
 			<?php require_once(get_stylesheet_directory() . "/banner-carrossel.php");  ?>
 			<!-- lista posts  API-->
-			<?php
-			//https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
-			function descricao_resumida( $text) {
-			    $raw_excerpt = $text;
-			    $text = strip_shortcodes( $text );
-			    $text = excerpt_remove_blocks( $text );
-			    /** This filter is documented in wp-includes/post-template.php */
-			    $text = apply_filters( 'the_content', $text );
-			    $text = str_replace( ']]>', ']]&gt;', $text );
-			    /* translators: Maximum number of words used in a post excerpt. */
-			    $excerpt_length = intval( _x( '55', 'excerpt_length' ) );
-			    /**
-			     * Filters the maximum number of words in a post excerpt.
-			     *
-			     * @since 2.7.0
-			     *
-			     * @param int $number The maximum number of words. Default 55.
-			     */
-			    $excerpt_length = (int) apply_filters( 'excerpt_length', $excerpt_length );
-			    /**
-			     * Filters the string in the "more" link displayed after a trimmed excerpt.
-			     *
-			     * @since 2.9.0
-			     *
-			     * @param string $more_string The string shown within the more link.
-			     */
-			    $excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
-			    $text         = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-			    /**
-			     * Filters the trimmed excerpt string.
-			     *
-			     * @since 2.8.0
-			     *
-			     * @param string $text        The trimmed text.
-			     * @param string $raw_excerpt The text prior to trimming.
-			     */
-			    return $text;
-			}
-			?>
-		
-			<div id="divListPosts"></div>
 			
+			<div id="divListPosts" class="post">
+			</div>
 
-			<div>
-				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-				<script>
-					/* busca na api do site nacional o link de todos os sites estaduais*/
-					axios.get('http://localhost:8089/wp-json/api/links_estados')
-				        .then(response => {
-				            var links_estados = response.data
-				            Object.entries(links_estados).forEach(
-				            	([estado, link]) => {
-				            		//console.log(estado +' - '+link)
-				            		var post = busca_ultima_postagem(link)
-				            		exibe_postagem(post)
-				            	}
-				            )
-				        }).catch(error => {
-				            console.log(error)
-				        });
-			        /* metodo assincrono que faz requisicao da ultima postagem */
-			        function busca_ultima_postagem(link) {
-			        	axios.get(link + "/wp-json/wp/v2/posts?per_page=1&_embed")
-				        	.then(response => {
-			        			console.log(response.data[0])
-			        			return response.data[0]
-			        		}).catch(error => {
-				            console.log(error)
-				        })
-						return null
-					}
+            <div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"> /*CND axios/"</script>
+                <script>
+                    busca_list_links();
+                    async function busca_list_links(){
+               			try{
+	                        const response = await axios.get('http://localhost:8089/wp-json/api/links_estados')
+	                        const links_estados = response.data
+	                        const link_nacional = links_estados['link_nacional']
+	                        Object.entries(links_estados).forEach(
+	                        	async ([estado, link]) => {
+	                        		//console.log(estado+' '+link)
+	                        		if (estado != 'link_nacional') {
+	                        			const post = await busca_ultima_postagem(link)
+	                        			exibe_postagem(estado, post.data[0], link_nacional)
+	                        		}
+	                    		}
+	                		)
+                    	}catch (e){
+                    		console.log(e)
+                    	}
+                    }
+                    /* metodo assincrono que faz requisicao da ultima postagem */
+                    async function busca_ultima_postagem(link) {
+                        return await axios.get(link + "/wp-json/wp/v2/posts?per_page=1&_embed")
+                    }
 					/* exibe postagem */
-					function exibe_postagem(post){
-						console.log(post)
-						var divListPosts = document.getElementById('divListPosts')
-						divListPosts.innerHTML += "<div>"+"teste"+"</div>"
+					function exibe_postagem(estado, post, link_nacional){
+						var	divListPosts = document.getElementById('divListPosts')
+						divListPosts.innerHTML += `
+						<article id="article_conteudo" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
+							<h2>${estado}</h2>
+							<div class="list-article-thumb">
+								<a href="${post.link}>
+									${returna_img(post._embedded['wp:featuredmedia'][0].source_url, link_nacional)}
+								</a>
+							</div>
+							<div class="list-article-content">
+								<div class="list-article-meta">
+
+								</div>
+								<div class="entry-header">
+									<h2>
+										<a href="${post.link}">${post.title.rendered}</a>
+									</h2>
+								</div>
+								<div class="entry-excerpt">
+									<p>
+										${post.excerpt.rendered}
+									</p>
+								</div>
+							</div>
+						</article>	
+						` 
+					}
+
+					/* retorna img */
+					//$rest_post->_embedded->{'wp:featuredmedia'}[0]->source_url
+					function returna_img(link, link_nacional){
+						return (link) ? 
+							`<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link}">` 
+							:
+							`<img class="tamanho-img attachment-onepress-blog-small size-onepress-blog-small wp-post-image" src="${link_nacional}/sem_imagem.jpg">`
 					}
 				</script>
 			</div>
