@@ -26,10 +26,12 @@ $layout = onepress_get_layout();
 			<!-- lista posts  API-->
 			
 			<div id="divListPosts" class="post">
+				<!-- posts serao inseridos dinamicamente no client side via JS -->
 			</div>
 
             <div>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"> /*CND axios/"</script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"> /*CND axios/"
+            	</script>
                 <script>
                     busca_list_links();
                     async function busca_list_links(){
@@ -42,7 +44,7 @@ $layout = onepress_get_layout();
 	                        		if (estado != 'link_nacional') {
 	                        			const post = await busca_ultima_postagem(link)
 	                        			if (post) {
-	                        				exibe_postagem(estado, post.data[0], link_nacional)
+	                        				exibe_postagem(estado, link, post.data[0], link_nacional)
 	                        			}else{
 	                        				console.log(post)
 	                        			}
@@ -61,14 +63,15 @@ $layout = onepress_get_layout();
                         	console.log(e)
                         	return null
                         }
-                        
                     }
 					/* exibe postagem */
-					function exibe_postagem(estado, post, link_nacional){
+					function exibe_postagem(estado, link, post, link_nacional){
 						var	divListPosts = document.getElementById('divListPosts')
 						divListPosts.innerHTML += `
 						<article id="article_conteudo" class="list-article clearfix post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-sem-categoria blog list-article ">
-							<h2>${estado}</h2>
+							<a href="${link}">
+								<h2>${estado}</h2>
+							</a>
 							<div class="list-article-thumb">
 								<a href="${post.link}">
 									${returna_img(post, link_nacional)}
@@ -76,7 +79,7 @@ $layout = onepress_get_layout();
 							</div>
 							<div class="list-article-content">
 								<div class="list-article-meta">
-
+									<!-- implementar, lista categorias desta postagem -->
 								</div>
 								<div class="entry-header">
 									<h2>
